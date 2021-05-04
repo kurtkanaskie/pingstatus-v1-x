@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="AM-config-properties">
+    <DisplayName>AM-config-properties</DisplayName>
+    <AssignVariable>
+        <Name>private.flow.target.basepath</Name>
+        <PropertySetRef>{apiproxy.name}.target_basepath</PropertySetRef>
+    </AssignVariable>
+</AssignMessage>
