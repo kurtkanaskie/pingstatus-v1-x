@@ -18,6 +18,13 @@ See the [LICENSE](LICENSE) file included.
 
 This code is open source.
 
+# TL;DR
+* git clone
+* Specify your profile parameters
+```
+mvn -P test install -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration
+```
+
 ## Overview
 This proxy is managed as a single source code repository that is self contained with the Apigee X proxy, config files for Apigee resources (e.g. resourcefiles, target servers), Open API Specification (OAS) and tests (static, unit, and integration).
 
@@ -155,67 +162,8 @@ To see what "tags" are in the tests for cucumberjs run `grep @ *.features` or `f
     @get-ping
     @get-statuses
 ```
-## Other Miscellaneous Commands
-#### Install and Run Tests by tag as default username
-* mvn -P test install -Dapi.testtag=@health,@intg
-
-#### Install and Run Tests by tag as no username (master)
-* mvn -P test clean install -Dapi.testtag=@health,@intg 
-
-#### Process-resources and Run Tests by tag
-* mvn -P test process-resources frontend:npm@integration -Dapi.testtag=@health
-
-#### Install and sync configuration items
-mvn install -Pprod -Dapigee.config.options=sync -Dcommit=local -Dbranch=master
-
-### JMeter
-To prevent jmeter from running use -DskipPerformanceTests=true
-jmeter -n -j target/test/performance/jmeter.log -l target/test/performance/output.txt -t target/test/performance/test.jmx -DtestData=testdata.csv -DthreadNum=10 -DrampUpPeriodSecs=1 -DloopCount=4 -Drecycle=true
-
-### JSLint
-* jslint apiproxy/resources/jsc
-* mvn -P test jshint:lint
-* mvn -P test jshint:lint@jslint
-
-### Aplicki / Cucumber Standalone Tests
-* mvn -Ptest process-resources frontend:npm@integration -Dapi.testtag=@get-ping
-* npm run integration -- --tags @get-ping
-* node ./node_modules/cucumber/bin/cucumber.js target/test/integration/features --tags @get-ping
-
-NOTE: For some reason the latest cucumber (2.3.4) doesnt work with apickli-gherkin.js, it doesnt find it, so use 1.3.3
-
-#### Diffing apiproxy directories
-* diff -q --suppress-common-lines -r --side-by-side apiproxy-prev apiproxy -W 240
-* diff --suppress-common-lines -r --side-by-side apiproxy-prev apiproxy -W 240
 
 ## Specific Usage
-### Maven $HOME/.m2/settings.xml
-```
-<profile>
-    <id>test</id>
-    <!-- These are also the values for environment variables used by set-edge-env-values.sh for Jenkins -->
-    <properties>
-        <EdgeOrg>yourorgname</EdgeOrg>
-        <EdgeEnv>test</EdgeEnv>
-        <EdgeUsername>yourusername</EdgeUsername>
-        <EdgePassword>yourpassword</EdgePassword>
-        <EdgeNorthboundDomain>yourorgname-yourenv.apigee.net</EdgeNorthboundDomain>
-        <EdgeAuthtype>oauth</EdgeAuthtype>
-    </properties>
-</profile>
-<profile>
-    <id>prod</id>
-    <properties>
-        <EdgeOrg>yourorgname</EdgeOrg>
-        <EdgeEnv>prod</EdgeEnv>
-        <EdgeUsername>yourusername</EdgeUsername>
-        <EdgePassword>yourpassword</EdgePassword>
-        <EdgeNorthboundDomain>yourorgname-yourenv.apigee.net</EdgeNorthboundDomain>
-        <EdgeAuthtype>oauth</EdgeAuthtype>
-    </properties>
-</profile>
-
-```
 
 ## All at once - full build and deploy
 Replacer copies and replaces the resources dir into the target. Note use of -Dapigee.config.dir option.

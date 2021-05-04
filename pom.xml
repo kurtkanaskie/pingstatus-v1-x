@@ -50,8 +50,8 @@
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.authtype>oauth</apigee.authtype>
 				<apigee.bearer>${EdgeBearer}</apigee.bearer>
-				<apigee.username>cicd-dev-service-account@ngsaas-5g-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>./cicd-dev-service-account-ngsaas-5g-kurt.json</apigee.serviceaccount.file>
+				<apigee.username>${EdgeUsername}</apigee.username>
+                <apigee.serviceaccount.file>${EdgeServiceAccountFile}</apigee.serviceaccount.file>
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
 				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
 				<apigee.options>override</apigee.options>
@@ -96,6 +96,13 @@
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
 				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
 				<apigee.options>override</apigee.options>
+
+				<portal.url>https://dev-amer-demo13.pantheonsite.io</portal.url><!-- URL of the developer portal. -->
+				<portal.username>${PortalUsername}</portal.username><!-- Username for the developer portal. -->
+				<portal.password>${PortalPassword}</portal.password><!-- Password for the developer portal. -->
+				<portal.format>yaml</portal.format><!-- Format of the OpenAPI specs. json|yaml -->
+				<portal.api.doc.format>basic_html</portal.api.doc.format><!-- Format in the portal. Values: basic_html, restricted_html, full_html -->
+				<portal.directory>./target/resources/specs</portal.directory> <!-- Directory where OpenAPI specs are accessible. Using ./specs for sample -->
 			</properties>
 		</profile>
 		<profile>
