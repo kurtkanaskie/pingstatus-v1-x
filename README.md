@@ -175,8 +175,8 @@ Replacer copies and replaces the resources dir into the target. Note use of -Dap
 * mvn -P test install -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dskip.specs=true
 
 ### Cloud Build all at once
-* cloud-build-local --dryrun=true --substitutions=BRANCH_NAME=local,COMMIT_SHA=none .
-* cloud-build-local --dryrun=false --substitutions=BRANCH_NAME=local,COMMIT_SHA=none .
+* cloud-build-local --dryrun=true --config=cloudbuild-dev.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
+* cloud-build-local --dryrun=false --config=cloudbuild-dev.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
 
 ## Other commands for iterations
 
