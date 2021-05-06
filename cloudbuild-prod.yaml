@@ -1,0 +1,32 @@
+steps: 
+- name: gcr.io/cloud-builders/gcloud
+  args:
+  - kms
+  - decrypt
+  - "--ciphertext-file=cicd-prod.encrypted"
+  - "--plaintext-file=cicd-prod.decrypted"
+  - "--location=global"
+  - "--keyring=apigee-cicd-credentials"
+  - "--key=cicd-prod"
+- name: 'gcr.io/cloud-builders/mvn'
+  entrypoint: 'bash'
+  args: ['-c', 'mvn -P $_PROFILE install -Dapigee.username=$$USERNAME -Dapigee.serviceaccount.file=$_SAFILE -Dapigee.org=$_ORG -Dapigee.env=$_ENV -Dapi.northbound.domain=$_NORTHBOUNDDOMAIN -Dapigee.config.options=$_CONFIGOPTIONS -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dapi.testtag=@health -Dcommit="${COMMIT_SHA} via GCP" -Dbranch=${BRANCH_NAME}']
+  dir: '.'
+  secretEnv: ['USERNAME']
+
+substitutions:
+  _ORG: ngsaas-5g-kurt
+  _ENV: prod-1
+  _SAFILE: cicd-prod.decrypted
+  _PROFILE: ngsaas-prod-1
+  _NORTHBOUNDDOMAIN: napi.kurtkanaskie.net
+  _CONFIGOPTIONS: update
+  _DEPLOYSUFFIX:
+options:
+  substitution_option: 'ALLOW_LOOSE'
+
+secrets:
+- kmsKeyName: projects/apigee-pingstatus-v1-x/locations/global/keyRings/apigee-cicd-credentials/cryptoKeys/cicd-prod
+  secretEnv:
+    USERNAME: CiQAZ2M7aOFmxGtFj19CnndMR5YgPMXJK/3tOvB7txEpWO7fr+QSaAAIjuzTg5f5BiKvAE+vWSrQ9rAT14Df+GphI8LMZSHRsZL+pRBrsqwl8nfqswr5yCNnCuTD6451V8ruTM5Ljro6bEJXpSVAoKYbbgg10ipNuajFxgWJryPm8xLRwyHp2S/2slXmYKy4
+

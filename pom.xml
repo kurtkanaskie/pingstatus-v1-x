@@ -29,9 +29,6 @@
 		<org.slf4j.simpleLogger.defaultLogLevel>info</org.slf4j.simpleLogger.defaultLogLevel>
 		<project.root.dir>${basedir}</project.root.dir>
 		<target.root.dir>${basedir}/target</target.root.dir>
-		<!--
-		<deployment.suffix>${user.name}</deployment.suffix>
-		-->
 		<commit>none</commit>
 		<branch>local</branch>
 	</properties>
@@ -43,16 +40,14 @@
 		<profile>
 			<id>ngsaas-dev-1</id>
 			<properties>
+				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.profile>ngsaas-dev-1</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
 				<apigee.org>${EdgeOrg}</apigee.org>
 				<apigee.env>${EdgeEnv}</apigee.env>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.authtype>oauth</apigee.authtype>
-				<apigee.bearer>${EdgeBearer}</apigee.bearer>
+				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
 				<apigee.username>${EdgeUsername}</apigee.username>
                 <apigee.serviceaccount.file>${EdgeServiceAccountFile}</apigee.serviceaccount.file>
-				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
 				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
@@ -60,16 +55,14 @@
 		<profile>
 			<id>ngsaas-test-1</id>
 			<properties>
+				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.profile>ngsaas-test-1</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
 				<apigee.org>${EdgeOrg}</apigee.org>
 				<apigee.env>${EdgeEnv}</apigee.env>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.authtype>oauth</apigee.authtype>
-				<apigee.bearer>${EdgeBearer}</apigee.bearer>
-				<apigee.username>cicd-test-service-account@ngsaas-5g-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>./cicd-test-service-account-ngsaas-5g-kurt.json</apigee.serviceaccount.file>
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
+				<apigee.username>cicd-test-service-account@ngsaas-5g-kurt.iam.gserviceaccount.com</apigee.username>
+                <apigee.serviceaccount.file>./cicd-test.decrypted</apigee.serviceaccount.file>
 				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
 				<apigee.options>override</apigee.options>
 
@@ -84,16 +77,14 @@
 		<profile>
 			<id>ngsaas-prod-1</id>
 			<properties>
+				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.profile>ngsaas-prod-1</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
 				<apigee.org>${EdgeOrg}</apigee.org>
 				<apigee.env>${EdgeEnv}</apigee.env>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.authtype>oauth</apigee.authtype>
-				<apigee.bearer>${EdgeBearer}</apigee.bearer>
-				<apigee.username>cicd-prod-service-account@ngsaas-5g-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>./cicd-prod-service-account-ngsaas.json</apigee.serviceaccount.file>
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
+				<apigee.username>cicd-prod-service-account@ngsaas-5g-kurt.iam.gserviceaccount.com</apigee.username>
+                <apigee.serviceaccount.file>./cicd-prod.decrypted</apigee.serviceaccount.file>
 				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
 				<apigee.options>override</apigee.options>
 
