@@ -75,51 +75,80 @@ mvn -P test install -Dapigee.config.options=update -Dapigee.config.dir=target/re
 **NOTE:** This API proxy repository does not support a "feature" branch with replacement of proxy mame and basepath.
 
 ### Intitially Create Branches based on SDLC (dev --> test --> prod)
-
+Git suggests:
+```
+echo "# demo2" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:kurtkanaskie/demo2.git
+git push -u origin main
+```
+But we're not going to do that, we're going to make `dev` the default branch.
 ## Set Lowest Level branch "dev" environment
+```
 git init
 git branch -M dev
 git remote add origin git@github.com:kurtkanaskie/demo.git
-git push origin dev
+git push --set-upstream origin dev
+```
 
 ## Create higher level branch "test"
+```
 git checkout -b test
 git branch --set-upstream-to=origin/dev test
 git push origin test
 git checkout dev
+```
 
 ## Create higher level branch "prod"
+```
 git checkout -b prod
 git branch --set-upstream-to=origin/test prod
 git push origin prod
 git checkout dev
+```
 
 Deploy to "dev" environment
 
-#### Initial Deploy to dev
+### Initial Deploy to dev
 ```
 git checkout dev
 mvn -P dev install ...
 ```
 
+### Make changes to dev and push to build
+```
+git checkout dev
+# Make changes
+git commit -am "Change 1"
+git push
+```
 ### Merge to Environment "test" and build
-* git checkout test
-* git pull (does fast-forward or recursive merge)
-    * OR
-* git merge --no-ff dev (use in stead of git pull?)
-* git push origin test (triggers build or run mvn -P test install ...)
-* git checkout dev
+```
+git checkout test
+git pull # (does fast-forward or recursive merge)
+    # OR
+# git merge --no-ff dev (use instead of git pull)
+git push origin test (triggers build or run mvn -P test install ...)
+git checkout dev
+```
 
 ### Merge to Environment "prod" and build
-* git checkout prod
-* git pull (does fast-forward or recursive merge)
-    * OR
-* git merge --no-ff dev (use in stead of git pull?)
-* git push origin prod (triggers build or run mvn -P prod install ...)
-* git checkout dev
+```
+git checkout prod
+git pull # (does fast-forward or recursive merge)
+    # OR
+# git merge --no-ff dev (use instead of git pull)
+git push origin prod (triggers build or run mvn -P prod install ...)
+git checkout dev
+```
 
-#### Switch back to dev
-* git checkout dev
+### ALWAYS Switch back to dev
+```
+git checkout dev
+```
 
 ## Maven
 ### Jenkins Commands
