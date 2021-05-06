@@ -28,5 +28,4 @@ options:
 secrets:
 - kmsKeyName: projects/apigee-pingstatus-v1-x/locations/global/keyRings/apigee-cicd-credentials/cryptoKeys/cicd-test
   secretEnv:
-    USERNAME: CiQAZ2M7aOFmxGtFj19CnndMR5YgPMXJK/3tOvB7txEpWO7fr+QSaAAIjuzTg5f5BiKvAE+vWSrQ9rAT14Df+GphI8LMZSHRsZL+pRBrsqwl8nfqswr5yCNnCuTD6451V8ruTM5Ljro6bEJXpSVAoKYbbgg10ipNuajFxgWJryPm8xLRwyHp2S/2slXmYKy4
-
+    USERNAME: CiQAyTb9uxbdNxBgrA/Z1I+BZvtw0Uw4uRxwtsHBLrVdxIKZnUgSaQBPIhxjJrebJXuxBq8B9H1FAWShGi1v5fzbinVKP4FFskF9eJbibPk8RGyNQu9lgk5jYR4kse/EoaExVk6/CLByuOJs+1UytwZsp1FqZy3V2S3z3dstdq4m41LNNvA1JLGU39nANeMTjA==
