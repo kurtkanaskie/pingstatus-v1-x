@@ -22,7 +22,7 @@ This code is open source.
 * git clone
 * Specify your profile parameters
 ```
-mvn -P test install -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration
+mvn -P test install -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dapigee.username=${EdgeInstallUsername} -Dapigee.serviceaccount.file=${EdgeServiceAccountFile}
 ```
 
 ## Overview
@@ -40,6 +40,7 @@ The key components enabling continuous integration are:
 Basically, everything that Jenkins does using Maven and other tools can be done locally, either directly with the tool (e.g. jslint, cucumberjs) or via Maven commands. 
 
 Set your $HOME/.m2/settings.xml  (optional)
+
 Example:
 ```
 <?xml version="1.0"?>
@@ -54,9 +55,10 @@ Example:
             <properties>
                 <EdgeOrg>yourorgname</EdgeOrg>
                 <EdgeEnv>yourenv</EdgeEnv>
-                <EdgeUsername>yourusername@exco.com</EdgeUsername>
-                <EdgePassword>yourpassword</EdgePassword>
                 <EdgeNorthboundDomain>yourourgname-yourenv.apigee.net</EdgeNorthboundDomain>
+                <EdgeUsername>cicd-test-service-account@yourproject.iam.gserviceaccount.com</EdgeUsername>
+                <!-- The unencrypted file, cloudbuild uses encrypted file during build -->
+                <EdgeServiceAccountFile>path/to/sa.json</EdgeServiceAccountFile>
                 <EdgeAuthtype>oauth</EdgeAuthtype>
             </properties>
         </profile>
@@ -72,28 +74,52 @@ mvn -P test install -Dapigee.config.options=update -Dapigee.config.dir=target/re
 
 **NOTE:** This API proxy repository does not support a "feature" branch with replacement of proxy mame and basepath.
 
-### Intitial Deploy to "test" environment
-* git checkout -b prod
-* git push origin prod
-* git checkout master
+### Intitially Create Branches based on SDLC (dev --> test --> prod)
 
-#### Initial Deploy
+## Set Lowest Level branch "dev" environment
+git init
+git branch -M dev
+git remote add origin git@github.com:kurtkanaskie/demo.git
+git push origin dev
+
+## Create higher level branch "test"
+git checkout -b test
+git branch --set-upstream-to=origin/dev test
+git push origin test
+git checkout dev
+
+## Create higher level branch "prod"
+git checkout -b prod
+git branch --set-upstream-to=origin/test prod
+git push origin prod
+git checkout prod
+
+Deploy to "dev" environment
+
+#### Initial Deploy to dev
 ```
-mvn -P test install...
+git checkout dev
+mvn -P dev install ...
 ```
 
-### Merge to Environments "prod"
+### Merge to Environment "test" and build
+* git checkout test
+* git pull (does fast-forward or recursive merge)
+    * OR
+* git merge --no-ff dev (use in stead of git pull?)
+* git push origin test (triggers build or run mvn -P test install ...)
+* git checkout dev
+
+### Merge to Environment "prod" and build
 * git checkout prod
-* git pull
-* git merge --no-ff master
-* git push
+* git pull (does fast-forward or recursive merge)
+    * OR
+* git merge --no-ff dev (use in stead of git pull?)
+* git push origin prod (triggers build or run mvn -P prod install ...)
+* git checkout dev
 
-```
-mvn -P prod install...
-```
-
-#### Switch back to master
-* git checkout master
+#### Switch back to dev
+* git checkout dev
 
 ## Maven
 ### Jenkins Commands
@@ -103,10 +129,10 @@ Set Environment variables via script
 ```
 ./set-edge-env-values.sh > edge.properties
 ```
-This allows a single build project to be used for each of the branches, depending on which changed.
+This allows a single build project to be used for each of the branches, depending on which branch changed.
 
 ```
-install -P${EdgeProfile} -Dapigee.org=${EdgeOrg} -Dapigee.env=${EdgeEnv} -Dapi.northbound.domain=${EdgeNorthboundDomain} -Dapigee.username=${EdgeInstallUsername} -Dapigee.password=${EdgeInstallPassword} -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dcommit=${GIT_COMMIT} -Dbranch=${GIT_BRANCH}
+install -P${EdgeProfile} -Dapigee.org=${EdgeOrg} -Dapigee.env=${EdgeEnv} -Dapi.northbound.domain=${EdgeNorthboundDomain} -Dapigee.username=${EdgeInstallUsername} -Dapigee.serviceaccount.file=${EdgeServiceAccountFile} -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dcommit=${GIT_COMMIT} -Dbranch=${GIT_BRANCH}
 ```
 ## Local Install and Set Up
 In the source directory there is a `package.json` file that holds the required node packages.
