@@ -92,7 +92,7 @@ git checkout dev
 git checkout -b prod
 git branch --set-upstream-to=origin/test prod
 git push origin prod
-git checkout prod
+git checkout dev
 
 Deploy to "dev" environment
 
