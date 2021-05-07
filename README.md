@@ -86,7 +86,7 @@ git remote add origin git@github.com:kurtkanaskie/demo2.git
 git push -u origin main
 ```
 But we're not going to do that, we're going to make `dev` the default branch.
-## Set Lowest Level branch "dev" environment
+### Set Lowest Level branch "dev" environment
 ```
 git init
 git branch -M dev
@@ -94,7 +94,7 @@ git remote add origin git@github.com:kurtkanaskie/demo.git
 git push --set-upstream origin dev
 ```
 
-## Create higher level branch "test"
+### Create higher level branch "test"
 ```
 git checkout -b test
 git branch --set-upstream-to=origin/dev test
@@ -102,7 +102,7 @@ git push origin test
 git checkout dev
 ```
 
-## Create higher level branch "prod"
+### Create higher level branch "prod"
 ```
 git checkout -b prod
 git branch --set-upstream-to=origin/test prod
@@ -110,15 +110,14 @@ git push origin prod
 git checkout dev
 ```
 
-Deploy to "dev" environment
-
-### Initial Deploy to dev
+## Development and Deployment
+### Initial Deploy to "dev"
 ```
 git checkout dev
 mvn -P dev install ...
 ```
 
-### Make changes to dev and push to build
+### Make changes to "dev" and push to build
 ```
 git checkout dev
 # Make changes
