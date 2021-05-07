@@ -127,20 +127,20 @@ git push
 ### Merge to Environment "test" and build
 ```
 git checkout test
-git pull # (does fast-forward or recursive merge)
+git pull #(does fast-forward or recursive merge)
     # OR
 # git merge --no-ff dev (use instead of git pull)
-git push origin test (triggers build or run mvn -P test install ...)
+git push origin test #(triggers build or run mvn -P test install ...)
 git checkout dev
 ```
 
 ### Merge to Environment "prod" and build
 ```
 git checkout prod
-git pull # (does fast-forward or recursive merge)
+git pull #(does fast-forward or recursive merge)
     # OR
 # git merge --no-ff dev (use instead of git pull)
-git push origin prod (triggers build or run mvn -P prod install ...)
+git push origin prod #(triggers build or run mvn -P prod install ...)
 git checkout dev
 ```
 
