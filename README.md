@@ -223,7 +223,7 @@ To see what "tags" are in the tests for cucumberjs run `grep @ *.features` or `f
 Replacer copies and replaces the resources dir into the target. Note use of -Dapigee.config.dir option.
 
 ### Maven all at once
-* mvn -P test install -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration
+* mvn -P ngsaas-dev-1 install -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration
 
 ### Cloud Build all at once
 * cloud-build-local --dryrun=true --config=cloudbuild-dev.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .

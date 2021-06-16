@@ -42,18 +42,15 @@
 			<properties>
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.profile>ngsaas-dev-1</apigee.profile>
-				<!--
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				-->
-				<apigee.hosturl>https://napi-dev.kurtkanaskie.net/apigee-api</apigee.hosturl>
 				<apigee.org>${EdgeOrg}</apigee.org>
 				<apigee.env>${EdgeEnv}</apigee.env>
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
 				<apigee.username>${EdgeUsername}</apigee.username>
 				<!--
-                <apigee.serviceaccount.file>${EdgeServiceAccountFile}</apigee.serviceaccount.file>
-				-->
                 <apigee.serviceaccount.file>./cicd-dev.decrypted</apigee.serviceaccount.file>
+				-->
+                <apigee.serviceaccount.file>${EdgeServiceAccountFile}</apigee.serviceaccount.file>
 				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
