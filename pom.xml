@@ -42,12 +42,18 @@
 			<properties>
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.profile>ngsaas-dev-1</apigee.profile>
+				<!--
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+				-->
+				<apigee.hosturl>https://napi-dev.kurtkanaskie.net/apigee-api</apigee.hosturl>
 				<apigee.org>${EdgeOrg}</apigee.org>
 				<apigee.env>${EdgeEnv}</apigee.env>
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
 				<apigee.username>${EdgeUsername}</apigee.username>
+				<!--
                 <apigee.serviceaccount.file>${EdgeServiceAccountFile}</apigee.serviceaccount.file>
+				-->
+                <apigee.serviceaccount.file>./cicd-dev.decrypted</apigee.serviceaccount.file>
 				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
@@ -113,32 +119,30 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>apigeex-eval-test</id>
+			<id>apigeex-eval-kurt-test</id>
 			<properties>
-				<apigee.profile>apigeex-eval-test</apigee.profile>
+				<apigee.profile>apigeex-eval-kurt-test</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.org>${EdgeOrg}</apigee.org>
-				<apigee.env>${EdgeEnv}</apigee.env>
+				<apigee.org>apigeex-eval-kurt</apigee.org>
+				<apigee.env>eval</apigee.env>
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.authtype>oauth</apigee.authtype>
-				<apigee.bearer>${EdgeBearer}</apigee.bearer>
 				<apigee.username>cicd-test-service-account@apigeex-eval-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>./cicd-test-service-account-eval.json</apigee.serviceaccount.file>
-				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
+                <apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/cicd-test-service-account-apigeex-eval-kurt.json</apigee.serviceaccount.file>
+				<api.northbound.domain>api-test.apigeex.net</api.northbound.domain>
 				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
 		</profile>
 		<profile>
-			<id>apigeex-eval-prod</id>
+			<id>apigeex-eval-kurt-prod</id>
 			<properties>
-				<apigee.profile>apigeex-eval-prod</apigee.profile>
+				<apigee.profile>apigeex-eval-kurt-prod</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
 				<apigee.org>${EdgeOrg}</apigee.org>
 				<apigee.env>${EdgeEnv}</apigee.env>
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.authtype>oauth</apigee.authtype>
-				<apigee.bearer>${EdgeBearer}</apigee.bearer>
 				<apigee.username>cicd-prod-service-account@apigeex-eval-kurt.iam.gserviceaccount.com</apigee.username>
                 <apigee.serviceaccount.file>./cicd-prod-service-account-eval.json</apigee.serviceaccount.file>
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
