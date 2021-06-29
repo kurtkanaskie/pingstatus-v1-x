@@ -23,6 +23,9 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
+                <Name>CORS</Name>
+            </Step>
+            <Step>
                 <Condition>(request.verb != "OPTIONS")</Condition>
                 <Name>VA-header</Name>
             </Step>
@@ -68,12 +71,6 @@
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/status") and (request.verb = "GET")</Condition>
         </Flow>
-        <Flow name="cors">
-            <Description>ignore OPTIONS request</Description>
-            <Request/>
-            <Response/>
-            <Condition>(request.verb = "OPTIONS") and (proxy.pathsuffix MatchesPath "/**")</Condition>
-        </Flow>
         <Flow name="catch all">
             <Description>Catch any unmatched calls and raise fault</Description>
             <Request>
@@ -88,9 +85,6 @@
     <HTTPProxyConnection>
         <BasePath>/pingstatus/v1</BasePath>
     </HTTPProxyConnection>
-    <RouteRule name="cors">
-        <Condition>(request.verb == "OPTIONS")</Condition>
-    </RouteRule>
     <RouteRule name="ping">
         <Condition>(proxy.pathsuffix MatchesPath "/ping")</Condition>
     </RouteRule>

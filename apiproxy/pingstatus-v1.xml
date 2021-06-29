@@ -1,8 +1,8 @@
-<APIProxy revision="34" name="pingstatus-v1">
+<APIProxy revision="103" name="pingstatus-v1">
     <DisplayName>pingstatus-v1</DisplayName>
-    <Description>DESCRIPTION</Description>
-    <CreatedAt>1610482838896</CreatedAt>
-    <LastModifiedAt>1610482838896</LastModifiedAt>
+    <Description>CORS policy</Description>
+    <CreatedAt>1623940165190</CreatedAt>
+    <LastModifiedAt>1623940165190</LastModifiedAt>
     <BasePaths>/pingstatus/v1</BasePaths>
     <Policies>
         <Policy>AM-create-ping-response</Policy>
@@ -17,9 +17,9 @@
         <Policy>AM-create-status-response</Policy>
         <Policy>AM-set-standard-error-response</Policy>
         <Policy>JS-proxy-fault-rules</Policy>
-        <Policy>KV-config-values</Policy>
         <Policy>AM-set-service-unavailable-error-variables</Policy>
         <Policy>AM-config-properties</Policy>
+        <Policy>CORS</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
@@ -28,7 +28,6 @@
         <Resource>jsc://JS-set-time-data.js</Resource>
         <Resource>jsc://JS-proxy-fault-rules.js</Resource>
     </Resources>
-    <TargetServers></TargetServers>
     <TargetEndpoints>
         <TargetEndpoint>default</TargetEndpoint>
     </TargetEndpoints>

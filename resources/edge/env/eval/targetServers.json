@@ -1,7 +1,7 @@
 [
     {
         "name": "pingstatus-v1",
-        "host": "amer-demo13-test.apigee.net",
+        "host": "API_NORTHBOUND_DOMAIN",
         "isEnabled": true,
         "port": 443,
         "sSLInfo": {

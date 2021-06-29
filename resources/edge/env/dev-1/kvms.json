@@ -1,0 +1,38 @@
+[
+    {
+        "name": "pingstatus-v1",
+        "encrypted": false,
+        "entry": [
+            {
+                "name": "target_basepath",
+                "value": "pingstatus-mock/v1"
+            },
+            {
+                "name": "logging.log",
+                "value": "true"
+            },
+            {
+                "name": "logging.level",
+                "value": "INFO"
+            }
+        ]
+    },
+    {
+        "name": "test-and-delete",
+        "encrypted": true,
+        "entry": [
+            {
+                "name": "name1",
+                "value": "Maven1"
+            },
+            {
+                "name": "name2",
+                "value": "Maven2"
+            },
+            {
+                "name": "name3",
+                "value": "Maven3"
+            }
+        ]
+    }
+]

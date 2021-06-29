@@ -48,9 +48,9 @@
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
 				<apigee.username>${EdgeUsername}</apigee.username>
 				<!--
-                <apigee.serviceaccount.file>./cicd-dev.decrypted</apigee.serviceaccount.file>
-				-->
                 <apigee.serviceaccount.file>${EdgeServiceAccountFile}</apigee.serviceaccount.file>
+				-->
+                <apigee.serviceaccount.file>./cicd-dev.decrypted</apigee.serviceaccount.file>
 				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
@@ -142,7 +142,7 @@
 				<apigee.authtype>oauth</apigee.authtype>
 				<apigee.username>cicd-prod-service-account@apigeex-eval-kurt.iam.gserviceaccount.com</apigee.username>
                 <apigee.serviceaccount.file>./cicd-prod-service-account-eval.json</apigee.serviceaccount.file>
-				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
+				<api.northbound.domain>eapi-test.kurtkanaskie.net</api.northbound.domain>
 				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
