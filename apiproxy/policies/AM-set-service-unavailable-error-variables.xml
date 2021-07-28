@@ -19,7 +19,7 @@
         <Value>100000</Value>
     </AssignVariable>
     <AssignVariable>
-        <Name>flow.error.message</Name>
+        <Name>flow.error.description</Name>
         <Value>Service is currently not available</Value>
     </AssignVariable>
     <AssignVariable>

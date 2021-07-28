@@ -8,7 +8,7 @@
     "message.status.code": "{message.status.code}",
     "message.reason.phrase": "{message.reason.phrase}",
     "error.code": "{flow.error.code}",
-    "error.message": "{flow.error.message}",
+    "error.message": "{flow.error.description}",
     "error.state": "{flow.error.state}",
     "error.content": "{flow.error.content}",
     "fault.name": "{fault.name}",

@@ -51,7 +51,7 @@
                 <apigee.serviceaccount.file>${EdgeServiceAccountFile}</apigee.serviceaccount.file>
 				-->
                 <apigee.serviceaccount.file>./cicd-dev.decrypted</apigee.serviceaccount.file>
-				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
+				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
 		</profile>
@@ -66,7 +66,7 @@
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
 				<apigee.username>cicd-test-service-account@ngsaas-5g-kurt.iam.gserviceaccount.com</apigee.username>
                 <apigee.serviceaccount.file>./cicd-test.decrypted</apigee.serviceaccount.file>
-				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
+				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
 				<apigee.options>override</apigee.options>
 
 				<portal.url>https://dev-amer-demo13.pantheonsite.io</portal.url><!-- URL of the developer portal. -->
@@ -88,7 +88,7 @@
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
 				<apigee.username>cicd-prod-service-account@ngsaas-5g-kurt.iam.gserviceaccount.com</apigee.username>
                 <apigee.serviceaccount.file>./cicd-prod.decrypted</apigee.serviceaccount.file>
-				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
+				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
 				<apigee.options>override</apigee.options>
 
 				<portal.url>https://dev-amer-demo13.pantheonsite.io</portal.url><!-- URL of the developer portal. -->
@@ -109,9 +109,41 @@
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.authtype>oauth</apigee.authtype>
 				<apigee.username>cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>./cicd-test-service-account-apigeex-mint-kurt.json</apigee.serviceaccount.file>
+                <apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/cicd-test-service-account-apigeex-mint-kurt.json</apigee.serviceaccount.file>
 				<api.northbound.domain>xapi-test.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
+				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
+				<apigee.options>override</apigee.options>
+			</properties>
+		</profile>
+		<profile>
+			<id>apigeex-mint-kurt-prod</id>
+			<properties>
+				<apigee.profile>apigeex-mint-kurt-prod</apigee.profile>
+				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+				<apigee.org>apigeex-mint-kurt</apigee.org>
+				<apigee.env>prod</apigee.env>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.authtype>oauth</apigee.authtype>
+				<apigee.username>cicd-prod-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
+                <apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/cicd-test-service-account-apigeex-mint-kurt.json</apigee.serviceaccount.file>
+				<api.northbound.domain>xapi.kurtkanaskie.net</api.northbound.domain>
+				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
+				<apigee.options>override</apigee.options>
+			</properties>
+		</profile>
+		<profile>
+			<id>apigeex-wizard-kurt-eval</id>
+			<properties>
+				<apigee.profile>apigeex-wizard-kurt-eval</apigee.profile>
+				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+				<apigee.org>apigeex-wizard-kurt</apigee.org>
+				<apigee.env>eval</apigee.env>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.authtype>oauth</apigee.authtype>
+				<apigee.username>orgadmin@apigeex-wizard-kurt.iam.gserviceaccount.com</apigee.username>
+                <apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-wizard-kurt-orgadmin.json</apigee.serviceaccount.file>
+				<api.northbound.domain>34.98.66.33.nip.io</api.northbound.domain>
+				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
 		</profile>
@@ -127,7 +159,7 @@
 				<apigee.username>cicd-test-service-account@apigeex-eval-kurt.iam.gserviceaccount.com</apigee.username>
                 <apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/cicd-test-service-account-apigeex-eval-kurt.json</apigee.serviceaccount.file>
 				<api.northbound.domain>api-test.apigeex.net</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
+				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
 		</profile>
@@ -143,7 +175,7 @@
 				<apigee.username>cicd-prod-service-account@apigeex-eval-kurt.iam.gserviceaccount.com</apigee.username>
                 <apigee.serviceaccount.file>./cicd-prod-service-account-eval.json</apigee.serviceaccount.file>
 				<api.northbound.domain>eapi-test.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
+				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
 		</profile>
@@ -160,7 +192,7 @@
 				<apigee.username>cicd-test-service-account@apigeex-multi-kurt.iam.gserviceaccount.com</apigee.username>
                 <apigee.serviceaccount.file>./cicd-test-service-account-apigeex-multi-kurt.json</apigee.serviceaccount.file>
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
+				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
 		</profile>
@@ -177,7 +209,7 @@
 				<apigee.username>cicd-test-service-account@apigeex-cmd-kurt.iam.gserviceaccount.com</apigee.username>
                 <apigee.serviceaccount.file>./cicd-test-service-account-cmd.json</apigee.serviceaccount.file>
 				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock</api.testtag>
+				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
 				<apigee.options>override</apigee.options>
 			</properties>
 		</profile>
