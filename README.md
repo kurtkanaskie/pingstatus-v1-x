@@ -20,9 +20,14 @@ This code is open source.
 
 # TL;DR
 * git clone
-* Specify your profile parameters
+* Specify your profile parameters on the command line or edit pom.xml profile
 ```
-mvn -P test install -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dapigee.username=${EdgeInstallUsername} -Dapigee.serviceaccount.file=${EdgeServiceAccountFile}
+mvn -P test install \
+    -Dapigee.org=$ORG \
+    -Dapigee.env=$ENV \
+    -Dapigee.username=$SA_EMAIL \
+    -Dapigee.serviceaccount.file=$SA_KEY_FILE \
+    -Dapi.northbound.domain=$ENVGROUP_HOSTNAME
 ```
 
 ## Overview

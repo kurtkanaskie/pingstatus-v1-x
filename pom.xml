@@ -38,182 +38,43 @@
 	-->
 	<profiles>
 		<profile>
-			<id>ngsaas-dev-1</id>
+			<id>test</id>
 			<properties>
+				<apigee.profile>test</apigee.profile>
+				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
 				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.profile>ngsaas-dev-1</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.org>${EdgeOrg}</apigee.org>
-				<apigee.env>${EdgeEnv}</apigee.env>
-				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
-				<apigee.username>${EdgeUsername}</apigee.username>
-				<!--
-                <apigee.serviceaccount.file>${EdgeServiceAccountFile}</apigee.serviceaccount.file>
-				-->
-                <apigee.serviceaccount.file>./cicd-dev.decrypted</apigee.serviceaccount.file>
-				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
 				<apigee.options>override</apigee.options>
-			</properties>
-		</profile>
-		<profile>
-			<id>ngsaas-test-1</id>
-			<properties>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.profile>ngsaas-test-1</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.org>${EdgeOrg}</apigee.org>
-				<apigee.env>${EdgeEnv}</apigee.env>
-				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
-				<apigee.username>cicd-test-service-account@ngsaas-5g-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>./cicd-test.decrypted</apigee.serviceaccount.file>
-				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
-				<apigee.options>override</apigee.options>
-
-				<portal.url>https://dev-amer-demo13.pantheonsite.io</portal.url><!-- URL of the developer portal. -->
-				<portal.username>${PortalUsername}</portal.username><!-- Username for the developer portal. -->
-				<portal.password>${PortalPassword}</portal.password><!-- Password for the developer portal. -->
-				<portal.format>yaml</portal.format><!-- Format of the OpenAPI specs. json|yaml -->
-				<portal.api.doc.format>basic_html</portal.api.doc.format><!-- Format in the portal. Values: basic_html, restricted_html, full_html -->
-				<portal.directory>./target/resources/specs</portal.directory> <!-- Directory where OpenAPI specs are accessible. Using ./specs for sample -->
-			</properties>
-		</profile>
-		<profile>
-			<id>ngsaas-prod-1</id>
-			<properties>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.profile>ngsaas-prod-1</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.org>${EdgeOrg}</apigee.org>
-				<apigee.env>${EdgeEnv}</apigee.env>
-				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
-				<apigee.username>cicd-prod-service-account@ngsaas-5g-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>./cicd-prod.decrypted</apigee.serviceaccount.file>
-				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
-				<apigee.options>override</apigee.options>
-
-				<portal.url>https://dev-amer-demo13.pantheonsite.io</portal.url><!-- URL of the developer portal. -->
-				<portal.username>${PortalUsername}</portal.username><!-- Username for the developer portal. -->
-				<portal.password>${PortalPassword}</portal.password><!-- Password for the developer portal. -->
-				<portal.format>yaml</portal.format><!-- Format of the OpenAPI specs. json|yaml -->
-				<portal.api.doc.format>basic_html</portal.api.doc.format><!-- Format in the portal. Values: basic_html, restricted_html, full_html -->
-				<portal.directory>./target/resources/specs</portal.directory> <!-- Directory where OpenAPI specs are accessible. Using ./specs for sample -->
-			</properties>
-		</profile>
-		<profile>
-			<id>apigeex-mint-kurt-test</id>
-			<properties>
-				<apigee.profile>apigeex-mint-kurt-test</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+				<apigee.config.dir>target/resources/edge</apigee.config.dir>
+				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
+				<apigee.config.options>update</apigee.config.options>
+				<!-- -->
+				<!-- Override on command line or replace with your values -->
 				<apigee.org>apigeex-mint-kurt</apigee.org>
 				<apigee.env>test</apigee.env>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.authtype>oauth</apigee.authtype>
 				<apigee.username>cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/cicd-test-service-account-apigeex-mint-kurt.json</apigee.serviceaccount.file>
+				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-test-service-account.json</apigee.serviceaccount.file>
 				<api.northbound.domain>xapi-test.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
-				<apigee.options>override</apigee.options>
 			</properties>
 		</profile>
 		<profile>
-			<id>apigeex-mint-kurt-prod</id>
+			<id>prod</id>
 			<properties>
-				<apigee.profile>apigeex-mint-kurt-prod</apigee.profile>
+				<apigee.profile>prod</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.options>override</apigee.options>
+				<apigee.config.dir>target/resources/edge</apigee.config.dir>
+				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
+				<apigee.config.options>update</apigee.config.options>
+				<!-- -->
+				<!-- Override on command line or replace with your values -->
 				<apigee.org>apigeex-mint-kurt</apigee.org>
 				<apigee.env>prod</apigee.env>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.authtype>oauth</apigee.authtype>
 				<apigee.username>cicd-prod-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/cicd-test-service-account-apigeex-mint-kurt.json</apigee.serviceaccount.file>
+				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-prod-service-account.json</apigee.serviceaccount.file>
 				<api.northbound.domain>xapi.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
-				<apigee.options>override</apigee.options>
-			</properties>
+			</properties>		
 		</profile>
-		<profile>
-			<id>apigeex-wizard-kurt-eval</id>
-			<properties>
-				<apigee.profile>apigeex-wizard-kurt-eval</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.org>apigeex-wizard-kurt</apigee.org>
-				<apigee.env>eval</apigee.env>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.authtype>oauth</apigee.authtype>
-				<apigee.username>orgadmin@apigeex-wizard-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-wizard-kurt-orgadmin.json</apigee.serviceaccount.file>
-				<api.northbound.domain>34.98.66.33.nip.io</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
-				<apigee.options>override</apigee.options>
-			</properties>
-		</profile>
-		<profile>
-			<id>apigeex-eval-kurt-test</id>
-			<properties>
-				<apigee.profile>apigeex-eval-kurt-test</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.org>apigeex-eval-kurt</apigee.org>
-				<apigee.env>eval</apigee.env>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.authtype>oauth</apigee.authtype>
-				<apigee.username>cicd-test-service-account@apigeex-eval-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/cicd-test-service-account-apigeex-eval-kurt.json</apigee.serviceaccount.file>
-				<api.northbound.domain>api-test.apigeex.net</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
-				<apigee.options>override</apigee.options>
-			</properties>
-		</profile>
-		<profile>
-			<id>apigeex-eval-kurt-prod</id>
-			<properties>
-				<apigee.profile>apigeex-eval-kurt-prod</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.org>${EdgeOrg}</apigee.org>
-				<apigee.env>${EdgeEnv}</apigee.env>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.authtype>oauth</apigee.authtype>
-				<apigee.username>cicd-prod-service-account@apigeex-eval-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>./cicd-prod-service-account-eval.json</apigee.serviceaccount.file>
-				<api.northbound.domain>eapi-test.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
-				<apigee.options>override</apigee.options>
-			</properties>
-		</profile>
-		<profile>
-			<id>apigeex-multi-kurt-test</id>
-			<properties>
-				<apigee.profile>apigeex-multi-kurt-test</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.org>apigeex-multi-kurt</apigee.org>
-				<apigee.env>test</apigee.env>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.authtype>oauth</apigee.authtype>
-				<apigee.bearer>${EdgeBearer}</apigee.bearer>
-				<apigee.username>cicd-test-service-account@apigeex-multi-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>./cicd-test-service-account-apigeex-multi-kurt.json</apigee.serviceaccount.file>
-				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
-				<apigee.options>override</apigee.options>
-			</properties>
-		</profile>
-		<profile>
-			<id>apigeex-cmd-test</id>
-			<properties>
-				<apigee.profile>apigeex-cmd-test</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.org>${EdgeOrg}</apigee.org>
-				<apigee.env>eval</apigee.env>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.authtype>oauth</apigee.authtype>
-				<apigee.bearer>${EdgeBearer}</apigee.bearer>
-				<apigee.username>cicd-test-service-account@apigeex-cmd-kurt.iam.gserviceaccount.com</apigee.username>
-                <apigee.serviceaccount.file>./cicd-test-service-account-cmd.json</apigee.serviceaccount.file>
-				<api.northbound.domain>${EdgeNorthboundDomain}</api.northbound.domain>
-				<api.testtag>@errorHandling,@health,@wip,@mock,@cors</api.testtag>
-				<apigee.options>override</apigee.options>
-			</properties>
-		</profile>
-		
 	</profiles>
 
 	<build>
@@ -264,7 +125,6 @@
 										<include>resources/**</include>
 										<include>apiproxy/**</include>
 										<include>test/integration/**</include>
-										<include>test/performance/**</include>
 									</includes>
 								</resource>
 							</resources>
@@ -293,7 +153,6 @@
 					<basedir>${target.root.dir}</basedir>
 					<includes>
 						<include>apiproxy/pingstatus-v1.xml</include>
-						<include>apiproxy/proxies/default.xml</include>
 						<include>test/integration/test-config.json</include>
 						<include>resources/edge/env/*/targetServers.json</include>
 						<include>resources/edge/env/*/resourcefiles.json</include>
@@ -358,13 +217,13 @@
 						</goals>
 					</execution>
 					<execution>
-					    <id>create-config-resourcefiles</id>
-					    <phase>package</phase>                        
-					    <goals>
-					        <goal>resourcefiles</goal>
-					    </goals>
+						<id>create-config-resourcefiles</id>
+						<phase>package</phase>                        
+						<goals>
+							<goal>resourcefiles</goal>
+						</goals>
 					</execution>
-                    <execution>
+					<execution>
 						<id>create-config-apiproduct</id>
 						<phase>install</phase>
 						<goals>
@@ -471,7 +330,7 @@
 						</goals>
 						<configuration>
 							<skip>${skip.integration}</skip>
-							<arguments>run integration -- --tags ${api.testtag}</arguments>
+							<arguments>run integration</arguments>
 						</configuration>
 					</execution>
 				</executions>
