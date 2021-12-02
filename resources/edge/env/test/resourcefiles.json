@@ -2,6 +2,6 @@
 	{
 	    "name": "pingstatus-v1",
 	    "type": "properties",
-	    "file": "./resources/edge/env/test-1/resourceFiles/properties/pingstatus-v1.properties"
+	    "file": "./resources/edge/env/test/resourceFiles/properties/pingstatus-v1.properties"
 	} 
 ]

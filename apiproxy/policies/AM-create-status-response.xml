@@ -27,7 +27,8 @@
     "message":"STATUS",
     "targetResponse": {
         "headers":{
-            "X-CorrelationId":"{response.header.X-Correlation-ID}"
+            "Content-Type":"{response.header.content-type}",
+            "Content-Length":"{response.header.content-length}"
         },
         "content":{response.content}
     }

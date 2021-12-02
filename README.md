@@ -179,47 +179,64 @@ In the source directory there is a `package.json` file that holds the required n
 ## Running Tests Locally
 Often it is necessary to interate over tests for a feature development. Since Apickli/Cucumber tests are mostly text based, its easy to do this locally.
 Here are the steps:
-1 Install your proxy to Apigee if you are creating a new feature, otherwise just get a copy of the exising proxy you are building tests for.
-2 Run Maven to copy resources and "replace" things.
-    * `mvn -P test clean process-resources`
-3 Run tests by tag or by feature file
-    * cucumberjs target/test/apickli/features --tags @intg
-    * cucumberjs target/test/apickli/features/errorHandling.feature
-
-Alternatively, you can run the tests via Maven
-* `mvn -P test process-resources frontend:npm@integration -api.testtag=@get-ping`
-
-NOTE: the initial output from cucumber shows the proxy and basepath being used
+1. Install your proxy to Apigee and skip cleaning the target (-Dskip-clean=true)
 ```
-    [yourname]$ cucumberjs test/apickli/features --tags @invalid-clientid-for-resource
-==> pingstatus api: [yourorgname-test.apigee.net, /pingstatus/yournamev1]
-    @intg
-    Feature: Error handling
+mvn -P test process-resources apigee-config:exportAppKeys frontend:npm@integration \
+    -Dapigee.config.exportDir=target/test/integration \
+    -Dskip.clean=true \
+    -Dapi.testtag=@health
+```
+2. Then you can iterate more quickly using by tags
+```
+npm run integration -- --tags @get-ping
+```
+Example result:
+```
+> pingstatus@1.0.0 integration
+> node ./node_modules/cucumber/bin/cucumber.js target/test/integration/features "--tags" "@get-ping"
 
-      As an API consumer
-      I want consistent and meaningful error responses
-      So that I can handle the errors correctly
+CURL TO: [https://xapi-test.kurtkanaskie.net/pingstatus/v1]
+KEYS: key-12345 secret-67890
+@health
+Feature: API proxy health
 
-      @invalid-clientid-for-resource
-      Scenario: GET with invalid clientId for resource
-        Given I set clientId header to `invalidClientId`
-        When I GET /ping
-        Then response code should be 400
-        And response header Content-Type should be application/json
-        And response body path $.message should be missing or invalid clientId
+      As API administrator
+      I want to monitor Apigee proxy and backend service health
+      So I can alert when it is down
+
+  @health @get-ping
+  Scenario: Verify the API proxy is responding
+  ✔ Given I set X-APIKey header to `clientId`
+  ✔ When I GET /ping
+  ✔ Then response code should be 200
+  ✔ And response header Content-Type should be application/json
+  ✔ And response body path $.apiproxy should be `apiproxy`
+  ✔ And response body path $.client should be ^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$
+  ✔ And response body path $.latency should be ^\d{1,2}
+  ✔ And response body path $.message should be PONG
+
+1 scenario (1 passed)
+8 steps (8 passed)
+0m00.191s
 ```
 
 #### Tests
-To see what "tags" are in the tests for cucumberjs run `grep @ *.features` or `find . -name *.feature -exec grep @ {} \;`
+To see what "tags" are in the tests for cucumberjs run:
 ```
-@intg
-    @invalidclientid
-    @invalid-clientid-for-resource
+find test -name *.feature -exec grep @ {} \;
+```
+Result:
+```
+@errorHandling
     @foo
+    @post-foo
     @foobar
+    @foobar
+@cors
+    @cors-ping
 @health
     @get-ping
-    @get-statuses
+    @get-status
 ```
 
 ## Specific Usage

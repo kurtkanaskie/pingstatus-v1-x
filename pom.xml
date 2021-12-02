@@ -54,6 +54,7 @@
 				<apigee.username>cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
 				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-test-service-account.json</apigee.serviceaccount.file>
 				<api.northbound.domain>xapi-test.kurtkanaskie.net</api.northbound.domain>
+				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
 			</properties>
 		</profile>
 		<profile>
@@ -73,6 +74,7 @@
 				<apigee.username>cicd-prod-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
 				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-prod-service-account.json</apigee.serviceaccount.file>
 				<api.northbound.domain>xapi.kurtkanaskie.net</api.northbound.domain>
+				<api.testtag>@cors,@health,@errorHandling</api.testtag>
 			</properties>		
 		</profile>
 	</profiles>
@@ -330,7 +332,7 @@
 						</goals>
 						<configuration>
 							<skip>${skip.integration}</skip>
-							<arguments>run integration</arguments>
+							<arguments>run integration -- --tags ${api.testtag}</arguments>
 						</configuration>
 					</execution>
 				</executions>

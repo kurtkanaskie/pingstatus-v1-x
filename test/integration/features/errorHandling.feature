@@ -1,10 +1,10 @@
 @errorHandling
 Feature: Error handling
-	As an API consumer
-	I want consistent and meaningful error responses
-	So that I can handle the errors correctly
+    As an API consumer
+    I want consistent and meaningful error responses
+    So that I can handle the errors correctly
 
-	@foo
+    @foo
     Scenario: GET /foo request not found
         Given I set X-APIKey header to `clientId`
         When I GET /foo
@@ -20,7 +20,7 @@ Feature: Error handling
         And response header Content-Type should be application/json
         And response body path $.message should be No resource for DELETE /foo
         
-	@foobar
+    @foobar
     Scenario: GET /foo/bar request not found
         Given I set X-APIKey header to `clientId`
         When I GET /foo/bar
