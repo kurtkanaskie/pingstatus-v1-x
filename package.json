@@ -16,6 +16,7 @@
     "apigeelint": "2.11.0",
     "chai": "^4.3.4",
     "chai-fuzzy": "^1.6.1",
+    "cucumber": "^1.0.0",
     "mocha": "^9.1.3",
     "sinon": "^12.0.1"
   },
