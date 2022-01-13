@@ -5,8 +5,8 @@
 # Go to CLoud Build Settings page and set Cloud KMS CryptoKey Decrypter role to ENABLED.
 
 # initially: gcloud kms keyrings create "apigee-cicd-credentials" --location global
-gcloud kms keyrings list --location global
-gcloud kms keys list     --location "global" --keyring "apigee-cicd-credentials"
+# gcloud kms keyrings list --location global
+# gcloud kms keys list     --location "global" --keyring "apigee-cicd-credentials"
 
 # create new/updated service account keys in SAs directory following naming convention "cicd-$ENV-service-account@$PROJECT_ID.iam.gserviceaccount.com"
 # Re-run to update encrypted credentials and re-deploy
@@ -17,7 +17,7 @@ gcloud kms keys list     --location "global" --keyring "apigee-cicd-credentials"
 # Create key for this environment
 # initially: gcloud kms keys create cicd-dev --location global --keyring apigee-cicd-credentials --purpose encryption
 # Create the SA encrypted file and git add cicd-dev.encrypted
-gcloud kms encrypt --location global --keyring apigee-cicd-credentials --key cicd-dev --plaintext-file ../../SAs/cicd-dev-service-account-ngsaas-5g-kurt.json --ciphertext-file cicd-dev.encrypted
+gcloud kms encrypt --location global --keyring apigee-cicd-credentials --key cicd-dev --plaintext-file /Users/kurtkanaskie/work/APIGEEX/SAs/ngsaas-5g-kurt-cicd-dev-service-account.json --ciphertext-file cicd-dev.encrypted
 gcloud kms decrypt --location global --keyring apigee-cicd-credentials --key cicd-dev --ciphertext-file cicd-dev.encrypted --plaintext-file cicd-dev.decrypted
 
 # Create the encrypted values and place in cloudbuild...yaml
@@ -28,7 +28,7 @@ echo -n cicd-dev-service-account@ngsaas-5g-kurt.iam.gserviceaccount.com | gcloud
 
 # TEST =====================================================
 # initially: gcloud kms keys create cicd-test --location global --keyring apigee-cicd-credentials --purpose encryption
-gcloud kms encrypt --location global --keyring apigee-cicd-credentials --key cicd-test --plaintext-file ../../SAs/cicd-test-service-account-ngsaas-5g-kurt.json --ciphertext-file cicd-test.encrypted 
+gcloud kms encrypt --location global --keyring apigee-cicd-credentials --key cicd-test --plaintext-file /Users/kurtkanaskie/work/APIGEEX/SAs/ngsaas-5g-kurt-cicd-test-service-account.json --ciphertext-file cicd-test.encrypted 
 gcloud kms decrypt --location global --keyring apigee-cicd-credentials --key cicd-test --ciphertext-file cicd-test.encrypted --plaintext-file cicd-test.decrypted
 
 # Create the encrypted values and place in cloudbuild...yaml
@@ -39,7 +39,7 @@ echo -n cicd-test-service-account@ngsaas-5g-kurt.iam.gserviceaccount.com | gclou
 
 # PROD =====================================================
 # initially: gcloud kms keys create cicd-prod --location global --keyring apigee-cicd-credentials --purpose encryption
-gcloud kms encrypt --location global --keyring apigee-cicd-credentials --key cicd-prod --plaintext-file ../../SAs/cicd-prod-service-account-ngsaas-5g-kurt.json --ciphertext-file cicd-prod.encrypted
+gcloud kms encrypt --location global --keyring apigee-cicd-credentials --key cicd-prod --plaintext-file /Users/kurtkanaskie/work/APIGEEX/SAs/ngsaas-5g-kurt-cicd-prod-service-account.json --ciphertext-file cicd-prod.encrypted
 gcloud kms decrypt --location global --keyring apigee-cicd-credentials --key cicd-prod --ciphertext-file cicd-prod.encrypted --plaintext-file cicd-prod.decrypted
 
 # Create the encrypted values and place in cloudbuild...yaml
