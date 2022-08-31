@@ -25,4 +25,5 @@
         <StatusCode>200</StatusCode>
         <ReasonPhrase>OK</ReasonPhrase>
     </Set>
+    <AssignTo createNew="true" transport="http" type="response"/>
 </AssignMessage>

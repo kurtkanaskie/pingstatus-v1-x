@@ -2,6 +2,12 @@
 <TargetEndpoint name="default">
     <Description/>
     <FaultRules>
+        <!-- top to bottom -->
+        <FaultRule name="TargetTop">
+            <Step>
+                <Name>JS-proxy-fault-rules</Name>
+            </Step>
+        </FaultRule>
         <FaultRule name="service-unavailable">
             <Condition>(message.status.code &gt;= 500)</Condition>
             <Step>

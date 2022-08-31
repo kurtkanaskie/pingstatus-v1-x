@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<CORS continueOnError="false" enabled="true" name="CORS">
-    <DisplayName>CORS</DisplayName>
+<CORS continueOnError="false" enabled="true" name="CORS-all">
+    <DisplayName>CORS-all</DisplayName>
     <AllowOrigins>{request.header.origin}</AllowOrigins>
     <AllowMethods>GET, PUT, POST, DELETE</AllowMethods>
     <AllowHeaders>{substring(request.header.Access-Control-Request-Headers.values,1,-1)}</AllowHeaders>

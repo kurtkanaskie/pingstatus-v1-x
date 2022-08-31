@@ -245,7 +245,7 @@ Result:
 Replacer copies and replaces the resources dir into the target. Note use of -Dapigee.config.dir option.
 
 ### Maven all at once
-* mvn -P ngsaas-dev-1 install -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration
+* mvn -P dev-1 install 
 
 ### Cloud Build all at once
 * cloud-build-local --dryrun=true --config=cloudbuild-dev.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
@@ -254,39 +254,39 @@ Replacer copies and replaces the resources dir into the target. Note use of -Dap
 ## Other commands for iterations
 
 ### Full install and test, but skip cleaning target
-* mvn -P test install -Dskip.clean=true -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dapi.testtag=@health
+* mvn -P test install -Dskip.clean=true
 
 ### Skip clean and export - just install, deploy and test
-* mvn -P test install -Dskip.clean=true -Dskip.export=true -Dapigee.config.options=none -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dapi.testtag=@health
+* mvn -P test install -Dskip.clean=true -Dskip.export=true
 
 ### Just update Developers, Products and Apps
-* mvn -P test process-resources apigee-config:developers apigee-config:apiproducts apigee-config:apps apigee-config:exportAppKeys -Dapigee.config.options=update -Dskip.clean=true -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration
+* mvn -P test process-resources apigee-config:developers apigee-config:apiproducts apigee-config:apps apigee-config:exportAppKeys -Dskip.clean=true
 
 ### Just update resource files
-* mvn -P test process-resources apigee-config:resourcefiles -Dapigee.config.options=update -Dskip.clean=true -Dapigee.config.dir=target/resources/edge
+* mvn -P test process-resources apigee-config:resourcefiles -Dskip.clean=true 
 
 ### Just update Target Servers
-* mvn -P test process-resources apigee-config:targetservers -Dapigee.config.options=update -Dskip.clean=true -Dapigee.config.dir=target/resources/edge
+* mvn -P test process-resources apigee-config:targetservers -Dskip.clean=true 
 
 ### Export App keys
-* mvn -P test apigee-config:exportAppKeys -Dskip.clean=true -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration
+* mvn -P test apigee-config:exportAppKeys -Dskip.clean=true 
 
 ### Export Apps and run the tests (after skip.clean)
-* mvn -P test process-resources apigee-config:exportAppKeys frontend:npm@integration -Dskip.clean=true -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dapi.testtag=@get-ping
+* mvn -P test process-resources apigee-config:exportAppKeys frontend:npm@integration -Dskip.clean=true  -Dapi.testtag=@get-ping
 
 ### Just run the tests (after skip.clean) - for test iterations
 * mvn -P test process-resources -Dskip.clean=true frontend:npm@integration -Dapi.testtag=@health
 
 ### Skip Creating Apps and Overwrite latest revision
-* mvn -P test install -Dapigee.config.options=update -Dapigee.options=update -Dskip.apps=true -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dapi.testtag=@health
+* mvn -P test install -Dapigee.config.options=update -Dapigee.options=update -Dskip.apps=true -Dapi.testtag=@health
 
 ### Just update the API Specs in Drupal
 * mvn -P test process-resources apigee-smartdocs:apidoc -Dapigee.smartdocs.config.options=update
 
 ### Just update the Integrated Portal API Specs
 Via process-resources after replacements or when in target
-* mvn -X -P test process-resources apigee-config:specs -Dapigee.config.options=update -Dskip.clean=true -Dapigee.config.dir=target/resources/edge
-* mvn -P test -Dapigee.config.options=update apigee-config:specs -Dapigee.config.dir=target/resources/specs -Dapigee.config.dir=target/resources/edge
+* mvn -X -P test process-resources apigee-config:specs -Dskip.clean=true 
+* mvn -P test -Dapigee.config.options=update apigee-config:specs 
 
 Via the source without replacements
 * mvn -P test -Dapigee.config.options=update apigee-config:specs -Dapigee.config.dir=resources/edge

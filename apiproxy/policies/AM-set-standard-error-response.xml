@@ -2,9 +2,6 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-set-standard-error-response">
     <DisplayName>AM-set-standard-error-response</DisplayName>
     <Set>
-        <Headers>
-            <Header name="Content-Type">application/json</Header>
-        </Headers>
         <Payload contentType="application/json">
 {
     "code": "{flow.error.code}",

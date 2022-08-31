@@ -1,14 +1,13 @@
-openapi: 3.0.3
+openapi: 3.0.0
 info:
   version: 1.0.0
   title: pingstatus-v1-X
   description: |
-    Health checks for proxy (ping) and target backend (status).<br/>
-    API Key - pjpLOpz0hGGhl3wj4VRlAjwe4oIqDQTcdk08aVmBAG5JKHTF
+    Health checks for proxy (ping) and target backend (status).
   contact:
     email: kurtkanaskie@google.com
 servers:
-  - url: https://api-test.apigeex.net/pingstatus/v1
+  - url: https://xapi.kurtkanaskie.net/pingstatus/v1
 paths:
   /ping:
     get:

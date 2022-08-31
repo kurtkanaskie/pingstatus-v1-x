@@ -38,7 +38,7 @@
 	-->
 	<profiles>
 		<profile>
-			<id>ngsaas-dev-1</id>
+			<id>dev-1</id>
 			<properties>
 				<apigee.profile>ngsaas-dev-1</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
@@ -58,7 +58,7 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>ngsaas-test-1</id>
+			<id>test-1</id>
 			<properties>
 				<apigee.profile>ngsaas-test-1</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
@@ -78,7 +78,7 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>ngsaas-prod-1</id>
+			<id>prod-1</id>
 			<properties>
 				<apigee.profile>ngsaas-prod-1</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
@@ -107,6 +107,7 @@
 				<apigee.config.dir>target/resources/edge</apigee.config.dir>
 				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
 				<apigee.config.options>update</apigee.config.options>
+				<apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
 				<!-- -->
 				<!-- Override on command line or replace with your values -->
 				<apigee.org>apigeex-mint-kurt</apigee.org>
@@ -127,6 +128,7 @@
 				<apigee.config.dir>target/resources/edge</apigee.config.dir>
 				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
 				<apigee.config.options>update</apigee.config.options>
+				<apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
 				<!-- -->
 				<!-- Override on command line or replace with your values -->
 				<apigee.org>apigeex-mint-kurt</apigee.org>
@@ -137,6 +139,28 @@
 				<api.testtag>@cors,@health,@errorHandling</api.testtag>
 			</properties>		
 		</profile>
+		<profile>
+			<id>test-cmd</id>
+			<properties>
+				<apigee.profile>test-cmd</apigee.profile>
+				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.options>override</apigee.options>
+				<apigee.config.dir>target/resources/edge</apigee.config.dir>
+				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
+				<apigee.config.options>update</apigee.config.options>
+				<apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
+				<!-- -->
+				<!-- Override on command line or replace with your values -->
+				<apigee.org>apigeex-cmd-kurt</apigee.org>
+				<apigee.env>eval</apigee.env>
+				<apigee.username>orgadmin@apigeex-cmd-kurt.iam.gserviceaccount.com</apigee.username>
+				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-cmd-kurt-orgadmin.json</apigee.serviceaccount.file>
+				<api.northbound.domain>neg-api-test.kurtkanaskie.net</api.northbound.domain>
+				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
+			</properties>
+		</profile>
+		
 	</profiles>
 
 	<build>
@@ -245,7 +269,7 @@
 			<plugin>
 				<groupId>io.apigee.build-tools.enterprise4g</groupId>
 				<artifactId>apigee-edge-maven-plugin</artifactId>
-				<version>2.1.0</version>
+				<version>2.3.0</version>
 				<executions>
 					<execution>
 						<id>configure-bundle-step</id>
@@ -269,7 +293,7 @@
 			<plugin>
 				<groupId>com.apigee.edge.config</groupId>
 				<artifactId>apigee-config-maven-plugin</artifactId>
-				<version>2.1.0</version>
+				<version>2.3.0</version>
 				<executions>
 					<execution>
 						<id>create-config-targetserver</id>

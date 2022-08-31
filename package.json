@@ -7,7 +7,7 @@
   },
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "apigeelint": "node ./node_modules/apigeelint/cli.js -s ./apiproxy --profile apigeex -f table",
+    "apigeelint": "node ./node_modules/apigeelint/cli.js -s ./apiproxy --profile apigeex -f table -e FR001,PO026",
     "unit": "node ./node_modules/mocha/bin/mocha test/unit",
     "integration": "node ./node_modules/cucumber/bin/cucumber.js target/test/integration/features"
   },

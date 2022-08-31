@@ -3,18 +3,22 @@
     <Description/>
     <DefaultFaultRule name="DefaultFaultRule">
         <Step>
-            <Condition>(flow.error.code == null)</Condition>
-            <Name>AM-set-proxy-default-error-vars</Name>
+            <Name>JS-proxy-fault-rules</Name>
         </Step>
         <Step>
             <Name>AM-set-standard-error-response</Name>
         </Step>
         <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
+    <!-- bottom to top -->
     <FaultRules>
         <FaultRule name="ProxyFaultRules">
-            <!-- Quiet apigeelint -->
-            <Condition>(fault.name != null)</Condition>
+            <Step>
+                <Name>JS-proxy-fault-rules</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="ProxyBottom">
+                <Condition>(request.verb != "OPTIONS")</Condition>
             <Step>
                 <Name>JS-proxy-fault-rules</Name>
             </Step>
@@ -23,7 +27,7 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
-                <Name>CORS</Name>
+                <Name>CORS-all</Name>
             </Step>
             <Step>
                 <Condition>(request.verb != "OPTIONS")</Condition>

@@ -3,9 +3,6 @@
     <DisplayName>AM-create-status-response</DisplayName>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <Set>
-        <Headers>
-            <Header name="Content-Type">application/json</Header>
-        </Headers>
         <Payload contentType="application/json">
 {
     "organization": "{organization.name}",
@@ -37,4 +34,5 @@
         <StatusCode>200</StatusCode>
         <ReasonPhrase>OK</ReasonPhrase>
     </Set>
+    <AssignTo createNew="true" transport="http" type="response"/>
 </AssignMessage>

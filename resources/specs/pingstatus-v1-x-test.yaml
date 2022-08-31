@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.0.3
 info:
   version: 1.0.0
   title: pingstatus-v1-X
@@ -7,7 +7,7 @@ info:
   contact:
     email: kurtkanaskie@google.com
 servers:
-  - url: https://API_NORTHBOUND_DOMAIN/pingstatus/v1
+  - url: https://xapi-test.kurtkanaskie.net/pingstatus/v1
 paths:
   /ping:
     get:
