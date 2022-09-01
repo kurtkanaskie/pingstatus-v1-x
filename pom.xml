@@ -98,7 +98,7 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>test</id>
+			<id>apigeex-mint-kurt-test</id>
 			<properties>
 				<apigee.profile>test</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
@@ -119,7 +119,7 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>prod</id>
+			<id>apigeex-mint-kurt-prod</id>
 			<properties>
 				<apigee.profile>prod</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>

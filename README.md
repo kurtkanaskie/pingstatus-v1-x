@@ -245,11 +245,11 @@ Result:
 Replacer copies and replaces the resources dir into the target. Note use of -Dapigee.config.dir option.
 
 ### Maven all at once
-* mvn -P dev-1 install 
+* mvn -P test install 
 
 ### Cloud Build all at once
-* cloud-build-local --dryrun=true --config=cloudbuild-dev.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
-* cloud-build-local --dryrun=false --config=cloudbuild-dev.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
+* cloud-build-local --dryrun=true --config=cloudbuild-test.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
+* cloud-build-local --dryrun=false --config=cloudbuild-test.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
 
 ## Other commands for iterations
 

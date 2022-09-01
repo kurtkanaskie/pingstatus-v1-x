@@ -15,17 +15,17 @@ steps:
   secretEnv: ['USERNAME']
 
 substitutions:
-  _ORG: ngsaas-5g-kurt
-  _ENV: test-1
+  _ORG: apigeex-mint-kurt
+  _ENV: test
   _SAFILE: cicd-test.decrypted
-  _PROFILE: ngsaas-test-1
-  _NORTHBOUNDDOMAIN: napi-test.kurtkanaskie.net
+  _PROFILE: apigeex-mint-kurt-test
+  _NORTHBOUNDDOMAIN: xapi-test.kurtkanaskie.net
   _CONFIGOPTIONS: update
   _DEPLOYSUFFIX:
 options:
   substitution_option: 'ALLOW_LOOSE'
 
 secrets:
-- kmsKeyName: projects/apigee-pingstatus-v1-x/locations/global/keyRings/apigee-cicd-credentials/cryptoKeys/cicd-test
+- kmsKeyName: projects/apigeex-mint-kurt/locations/global/keyRings/apigee-cicd-credentials/cryptoKeys/cicd-test
   secretEnv:
-    USERNAME: CiQAyTb9uxbdNxBgrA/Z1I+BZvtw0Uw4uRxwtsHBLrVdxIKZnUgSaQBPIhxjJrebJXuxBq8B9H1FAWShGi1v5fzbinVKP4FFskF9eJbibPk8RGyNQu9lgk5jYR4kse/EoaExVk6/CLByuOJs+1UytwZsp1FqZy3V2S3z3dstdq4m41LNNvA1JLGU39nANeMTjA==
+    USERNAME: CiQAOAtgovgJcGP7qB5RBncNPn73+hP77jv/xnc4SlbjywuAm+YSbABYqO8xn8N974eKbTrDW7v1T3LgxTawOJYDtFCuuS/KFFYX8RagDEBOVbdac1H4Re+MjP3y730urxWyatjpvRWE1Fm8Jn5UUxSVc97ajtVtsvfQ7FlE2jXKYtUgTuRpEpQTrYSbozUhaduI0A==
