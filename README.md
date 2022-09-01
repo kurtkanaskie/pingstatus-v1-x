@@ -73,7 +73,7 @@ Example:
 ```
 ##### Initial build and deploy to pingstatus-v1
 ```
-mvn -P test install -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dapi.testtag=@health
+mvn -P test install
 ```
 ## Git Commands
 
@@ -119,7 +119,7 @@ git checkout dev
 ### Initial Deploy to "dev"
 ```
 git checkout dev
-mvn -P dev install ...
+mvn -P dev install
 ```
 
 ### Make changes to "dev" and push to build
