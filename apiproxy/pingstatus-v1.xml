@@ -1,6 +1,6 @@
 <APIProxy revision="103" name="pingstatus-v1">
     <DisplayName>pingstatus-v1</DisplayName>
-    <Description>CORS policy with new feature - DESCRIPTION</Description>
+    <Description>Refactoring for develop, test, prod envs - DESCRIPTION</Description>
     <CreatedAt>1623940165190</CreatedAt>
     <LastModifiedAt>1623940165190</LastModifiedAt>
     <BasePaths>/pingstatus/v1</BasePaths>

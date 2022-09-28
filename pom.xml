@@ -38,67 +38,28 @@
 	-->
 	<profiles>
 		<profile>
-			<id>dev-1</id>
+			<id>dev</id>
 			<properties>
-				<apigee.profile>ngsaas-dev-1</apigee.profile>
+				<apigee.profile>dev</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.options>override</apigee.options>
 				<apigee.config.dir>target/resources/edge</apigee.config.dir>
 				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
 				<apigee.config.options>update</apigee.config.options>
+				<apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
 				<!-- -->
 				<!-- Override on command line or replace with your values -->
-				<apigee.org>ngsaas-5g-kurt</apigee.org>
-				<apigee.env>dev-1</apigee.env>
-				<apigee.username>cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
-				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/ngsaas-5g-kurt-cicd-dev-service-account.json</apigee.serviceaccount.file>
-				<api.northbound.domain>napi-dev.kurtkanaskie.net</api.northbound.domain>
+				<apigee.org>apigeex-mint-kurt</apigee.org>
+				<apigee.env>develop</apigee.env>
+				<apigee.username>cicd-dev-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
+				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-dev-service-account.json</apigee.serviceaccount.file>
+				<api.northbound.domain>xapi-dev.kurtkanaskie.net</api.northbound.domain>
 				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
 			</properties>
 		</profile>
 		<profile>
-			<id>test-1</id>
-			<properties>
-				<apigee.profile>ngsaas-test-1</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.options>override</apigee.options>
-				<apigee.config.dir>target/resources/edge</apigee.config.dir>
-				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
-				<apigee.config.options>update</apigee.config.options>
-				<!-- -->
-				<!-- Override on command line or replace with your values -->
-				<apigee.org>ngsaas-5g-kurt</apigee.org>
-				<apigee.env>test-1</apigee.env>
-				<apigee.username>cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
-				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/ngsaas-5g-kurt-cicd-test-service-account.json</apigee.serviceaccount.file>
-				<api.northbound.domain>napi-test.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
-			</properties>
-		</profile>
-		<profile>
-			<id>prod-1</id>
-			<properties>
-				<apigee.profile>ngsaas-prod-1</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.options>override</apigee.options>
-				<apigee.config.dir>target/resources/edge</apigee.config.dir>
-				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
-				<apigee.config.options>update</apigee.config.options>
-				<!-- -->
-				<!-- Override on command line or replace with your values -->
-				<apigee.org>ngsaas-5g-kurt</apigee.org>
-				<apigee.env>prod-1</apigee.env>
-				<apigee.username>cicd-prod-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
-				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/ngsaas-5g-kurt-cicd-prod-service-account.json</apigee.serviceaccount.file>
-				<api.northbound.domain>napi.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
-			</properties>
-		</profile>
-		<profile>
-			<id>apigeex-mint-kurt-test</id>
+			<id>test</id>
 			<properties>
 				<apigee.profile>test</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
@@ -119,7 +80,7 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>apigeex-mint-kurt-prod</id>
+			<id>prod</id>
 			<properties>
 				<apigee.profile>prod</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
@@ -139,28 +100,6 @@
 				<api.testtag>@cors,@health,@errorHandling</api.testtag>
 			</properties>		
 		</profile>
-		<profile>
-			<id>test-cmd</id>
-			<properties>
-				<apigee.profile>test-cmd</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.options>override</apigee.options>
-				<apigee.config.dir>target/resources/edge</apigee.config.dir>
-				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
-				<apigee.config.options>update</apigee.config.options>
-				<apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
-				<!-- -->
-				<!-- Override on command line or replace with your values -->
-				<apigee.org>apigeex-cmd-kurt</apigee.org>
-				<apigee.env>eval</apigee.env>
-				<apigee.username>orgadmin@apigeex-cmd-kurt.iam.gserviceaccount.com</apigee.username>
-				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-cmd-kurt-orgadmin.json</apigee.serviceaccount.file>
-				<api.northbound.domain>neg-api-test.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
-			</properties>
-		</profile>
-		
 	</profiles>
 
 	<build>

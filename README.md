@@ -1,7 +1,7 @@
 # Ping and Status API for Apigee X
 
 This proxy demonstrates a simple design to demonstrate a full CI/CD lifecycle.
-It uses the following health check or monitoring endpoints
+It uses the following health check or monitoring endpoints:
 * GET /ping - response indicates that the proxy is operational
 * GET /status - response indicates the the backend is operational
 
@@ -31,20 +31,35 @@ mvn -P test install \
 ```
 
 ## Overview
-This proxy is managed as a single source code repository that is self contained with the Apigee X proxy, config files for Apigee resources (e.g. resourcefiles, target servers), Open API Specification (OAS) and tests (static, unit, and integration).
+This proxy is managed as a single source code repository that is self contained for the Apigee X platform. It includes the proxy configuration and its associated resources files (e.g. properties, target servers) necessary for the API proxy design.
+It also includes an Open API Specification (OAS) and tests (static, unit, and integration).
 
 The key components enabling continuous integration are:
-* Jenkins or GCP Cloud Build - build engine
+* GCP Cloud Build or Jenkins - build engine
 * Maven - builder
-* npm, node - to run unit and integration tests
 * apigeelint - for static proxy linting
+* npm, node - to run unit and integration tests
 * Apickli - cucumber extension for RESTful API testing
 * Cucumber - Behavior Driven Development
 * JMeter - Performance testing (commented out)
 
-Basically, everything that Jenkins does using Maven and other tools can be done locally, either directly with the tool (e.g. jslint, cucumberjs) or via Maven commands. 
+Basically, everything the build engine does (Maven and other tools) can be done locally, either directly with the tool (e.g. jslint, cucumberjs) or via Maven commands. 
 
-Set your $HOME/.m2/settings.xml  (optional)
+## Git structure
+There are three branches, dev, test and prod which align to SDLC phases.
+
+### dev branch
+The dev branch is the "main" branch and is used for deployment using Maven to the "test" Programmable Proxy environment in Apigee.
+
+### test branch
+The "test" branch is the next "higher" level branch and is used for deployment using Maven to the "test" Programmable Proxy environment in Apigee.
+
+### prod branch
+The "prod" branch is the next "higher" level branch and is used for deployment via Maven to the "prod" Programmable Proxy environment in Apigee.
+
+## Maven configuration
+
+Set your $HOME/.m2/settings.xml  (optional this sets private Maven variable values)
 
 Example:
 ```
@@ -56,7 +71,7 @@ Example:
     <profiles>
         <profile>
             <id>test</id>
-            <!-- These are also the values for environment variables used by set-edge-env-values.sh for Jenkins -->
+            <!-- These are also the values for environment variables used by set-edge-env-values.sh for the build engine -->
             <properties>
                 <EdgeOrg>yourorgname</EdgeOrg>
                 <EdgeEnv>yourenv</EdgeEnv>
@@ -75,7 +90,7 @@ Example:
 ```
 mvn -P test install
 ```
-## Git Commands
+## Git Setup
 
 **NOTE:** This API proxy repository does not support a "feature" branch with replacement of proxy mame and basepath.
 
@@ -133,8 +148,6 @@ git push
 ```
 git checkout test
 git pull #(does fast-forward or recursive merge)
-    # OR
-# git merge --no-ff dev (use instead of git pull)
 git push origin test #(triggers build or run mvn -P test install ...)
 git checkout dev
 ```
@@ -142,9 +155,7 @@ git checkout dev
 ### Merge to Environment "prod" and build
 ```
 git checkout prod
-git pull #(does fast-forward or recursive merge)
-    # OR
-# git merge --no-ff dev (use instead of git pull)
+git pull #(does fast-forward or recursive merge, pulls from test)
 git push origin prod #(triggers build or run mvn -P prod install ...)
 git checkout dev
 ```

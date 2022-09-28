@@ -1,7 +1,0 @@
-[
-	{
-	    "name": "pingstatus-v1",
-	    "type": "properties",
-	    "file": "./resources/edge/env/prod-1/resourceFiles/properties/pingstatus-v1.properties"
-	} 
-]

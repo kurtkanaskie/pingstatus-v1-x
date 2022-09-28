@@ -7,13 +7,13 @@
   },
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "apigeelint": "node ./node_modules/apigeelint/cli.js -s ./apiproxy --profile apigeex -f table -e FR001,PO026",
+    "apigeelint": "node ./node_modules/apigeelint/cli.js -s ./apiproxy --profile apigeex -f table",
     "unit": "node ./node_modules/mocha/bin/mocha test/unit",
     "integration": "node ./node_modules/cucumber/bin/cucumber.js target/test/integration/features"
   },
   "devDependencies": {
     "apickli": "^3.0.0",
-    "apigeelint": "2.11.0",
+    "apigeelint": "^2.x",
     "chai": "^4.3.4",
     "chai-fuzzy": "^1.6.1",
     "cucumber": "^1.0.0",
