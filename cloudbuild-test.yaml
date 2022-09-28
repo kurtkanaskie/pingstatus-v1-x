@@ -18,7 +18,7 @@ substitutions:
   _ORG: apigeex-mint-kurt
   _ENV: test
   _SAFILE: cicd-test.decrypted
-  _PROFILE: apigeex-mint-kurt-test
+  _PROFILE: test
   _NORTHBOUNDDOMAIN: xapi-test.kurtkanaskie.net
   _CONFIGOPTIONS: update
   _DEPLOYSUFFIX:

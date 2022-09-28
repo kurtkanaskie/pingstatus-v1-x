@@ -18,7 +18,7 @@ substitutions:
   _ORG: apigeex-mint-kurt
   _ENV: prod
   _SAFILE: cicd-prod.decrypted
-  _PROFILE: apigeex-mint-kurt-prod
+  _PROFILE: prod
   _NORTHBOUNDDOMAIN: xapi.kurtkanaskie.net
   _CONFIGOPTIONS: update
   _DEPLOYSUFFIX:
