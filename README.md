@@ -147,7 +147,7 @@ git push
 ### Merge to Environment "test" and build
 ```
 git checkout test
-git pull #(does fast-forward or recursive merge)
+git pull #(does fast-forward or recursive merge and pulls from dev)
 git push origin test #(triggers build or run mvn -P test install ...)
 git checkout dev
 ```
