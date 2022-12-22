@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: pingstatus-v1-X
-  description: |
+  title: pingstatus-v1-APIGEE_ENVIRONMENT
+  description: 
     Health checks for proxy (ping) and target backend (status).
   contact:
     email: kurtkanaskie@google.com

@@ -38,9 +38,9 @@
 	-->
 	<profiles>
 		<profile>
-			<id>dev</id>
+			<id>develop</id>
 			<properties>
-				<apigee.profile>dev</apigee.profile>
+				<apigee.profile>develop</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.options>override</apigee.options>
@@ -77,6 +77,15 @@
 				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-test-service-account.json</apigee.serviceaccount.file>
 				<api.northbound.domain>xapi-test.kurtkanaskie.net</api.northbound.domain>
 				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
+				<!-- Smartdocs Drupal -->
+				<portal.url>https://developerx.kurtkanaskie.net</portal.url><!-- URL of the developer portal. --> 
+				<portal.username>${PortalUsername}</portal.username><!-- Username for the developer portal. -->
+				<portal.password>${PortalPassword}</portal.password><!-- Password for the developer portal. -->
+				<portal.format>yaml</portal.format><!-- Format of the OpenAPI specs. -->
+				<portal.api.doc.format>basic_html</portal.api.doc.format><!-- Format in the portal. Values: basic_html, restricted_html, full_html -->
+				<portal.directory>./target/resources/specs</portal.directory>
+				<apigee.smartdocs.config.file>./target/resources/apicatalog-config.json</apigee.smartdocs.config.file>
+				<apigee.smartdocs.config.options>update</apigee.smartdocs.config.options>
 			</properties>
 		</profile>
 		<profile>
@@ -99,6 +108,48 @@
 				<api.northbound.domain>xapi.kurtkanaskie.net</api.northbound.domain>
 				<api.testtag>@cors,@health,@errorHandling</api.testtag>
 			</properties>		
+		</profile>
+		<profile>
+			<id>apigeex-payg-kurt-dev</id>
+			<properties>
+				<apigee.profile>apigeex-payg-kurt-dev</apigee.profile>
+				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.options>override</apigee.options>
+				<apigee.config.dir>target/resources/edge</apigee.config.dir>
+				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
+				<apigee.config.options>update</apigee.config.options>
+				<apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
+				<!-- -->
+				<!-- Override on command line or replace with your values -->
+				<apigee.org>apigeex-payg-kurt</apigee.org>
+				<apigee.env>dev</apigee.env>
+				<apigee.username>cicd-dev@apigeex-payg-kurt.iam.gserviceaccount.com</apigee.username>
+				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-payg-kurt-cicd-dev-service-account.json</apigee.serviceaccount.file>
+				<api.northbound.domain>papi-dev.kurtkanaskie.net</api.northbound.domain>
+				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
+			</properties>
+		</profile>
+		<profile>
+			<id>hybrid-aio-eval</id>
+			<properties>
+				<apigee.profile>eval</apigee.profile>
+				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.options>override</apigee.options>
+				<apigee.config.dir>target/resources/edge</apigee.config.dir>
+				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
+				<apigee.config.options>update</apigee.config.options>
+				<apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
+				<!-- -->
+				<!-- Override on command line or replace with your values -->
+				<apigee.org>apigee-hybrid-aio</apigee.org>
+				<apigee.env>develop</apigee.env>
+				<apigee.username>cicd-dev-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
+				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-dev-service-account.json</apigee.serviceaccount.file>
+				<api.northbound.domain>xapi-dev.kurtkanaskie.net</api.northbound.domain>
+				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
+			</properties>
 		</profile>
 	</profiles>
 
@@ -128,10 +179,11 @@
 			</plugin>
 
 			<!-- copy the full apiproxy folder to target folder -->
+			<!-- resources:copy-resources -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>3.3.0</version>
 				<executions>
 					<execution>
 						<id>copy-resources</id>
@@ -139,28 +191,32 @@
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
-						<configuration>
-							<overwrite>true</overwrite>
-							<resources>
-								<resource>
-									<!--source -->
-									<directory>${project.root.dir}</directory>
-									<filtering>true</filtering>
-									<includes>
-										<include>resources/**</include>
-										<include>apiproxy/**</include>
-										<include>test/integration/**</include>
-									</includes>
-								</resource>
-							</resources>
-							<!--target -->
-							<outputDirectory>${target.root.dir}</outputDirectory>
-						</configuration>
 					</execution>
 				</executions>
+				<configuration>
+					<overwrite>true</overwrite>
+					<resources>
+						<resource>
+							<!--source -->
+							<directory>${project.root.dir}</directory>
+							<filtering>true</filtering>
+							<includes>
+								<include>resources/edge/**</include>
+								<include>resources/apicatalog-config.json</include>
+								<include>resources/specs/pingstatus-v1.yaml</include>
+								<include>resources/specs/pingstatus-v1.png</include>
+								<include>apiproxy/**</include>
+								<include>test/integration/**</include>
+							</includes>
+						</resource>
+					</resources>
+					<!--target -->
+					<outputDirectory>${target.root.dir}</outputDirectory>
+				</configuration>
 			</plugin>
 
 			<!-- Do replacements -->
+			<!-- replacer:replace -->
 			<plugin>
 				<groupId>com.google.code.maven-replacer-plugin</groupId>
 				<artifactId>replacer</artifactId>
@@ -185,7 +241,7 @@
 						<include>resources/edge/org/apiProducts.json</include>
 						<include>resources/edge/org/developerApps.json</include>
 						<include>resources/edge/org/developers.json</include>
-						<include>resources/specs/pingstatus-v1-x.yaml</include>
+						<include>resources/specs/pingstatus-v1.yaml</include>
 					</includes>
 					<replacements>
 						<replacement>
@@ -208,7 +264,7 @@
 			<plugin>
 				<groupId>io.apigee.build-tools.enterprise4g</groupId>
 				<artifactId>apigee-edge-maven-plugin</artifactId>
-				<version>2.3.0</version>
+				<version>2.3.5</version>
 				<executions>
 					<execution>
 						<id>configure-bundle-step</id>
@@ -228,11 +284,11 @@
 				</executions>
 			</plugin>
 
-			<!-- apigee Configuration -->
+			<!-- apigee Configuration prefix: apigee-config then goal (e.g. apigee-config:apiproducts) -->
 			<plugin>
 				<groupId>com.apigee.edge.config</groupId>
 				<artifactId>apigee-config-maven-plugin</artifactId>
-				<version>2.3.0</version>
+				<version>2.4.4</version>
 				<executions>
 					<execution>
 						<id>create-config-targetserver</id>
@@ -282,7 +338,7 @@
 							<goal>exportAppKeys</goal>
 						</goals>
 					</execution>
-					<!--
+					<!-- #v1.3.8 only, not in X
 					<execution>
 						<id>create-config-specs</id>
 						<phase>install</phase>                        
@@ -294,6 +350,26 @@
 						</goals>
 					</execution>
 					-->
+				</executions>
+			</plugin>
+
+			<!-- apigee Smartdocs API Specs for Drupal-->
+			<!-- apigee-smartdocs:apidoc -->
+			<plugin>
+				<groupId>com.apigee.smartdocs.config</groupId>
+				<artifactId>apigee-smartdocs-maven-plugin</artifactId>
+				<version>2.2.3</version>
+				<configuration>
+					<skip>${skip.smartdocs}</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<id>smartdocs-deploy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>apidoc</goal>
+						</goals>
+					</execution>
 				</executions>
 			</plugin>
 			
@@ -347,6 +423,7 @@
 							<arguments>run unit</arguments>
 						</configuration>
 					</execution>
+					<!-- frontend:npm@integration -->
 					<execution>
 						<id>integration</id>
 						<phase>install</phase>
@@ -360,27 +437,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
-			<!-- apigee Smartdocs API Specs for Drupal-->
-			<!-- -->
-			<plugin>
-				<groupId>com.apigee.smartdocs.config</groupId>
-				<artifactId>apigee-smartdocs-maven-plugin</artifactId>
-				<version>2.0.0</version>
-				<configuration>
-					<skip>${skip.smartdocs}</skip>
-				</configuration>
-				<executions>
-					<execution>
-						<id>smartdocs-deploy</id>
-						<phase>install</phase>
-						<goals>
-							<goal>apidoc</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- -->
 
 			<!-- run performance tests -->
 			<!--
@@ -421,7 +477,7 @@
 				<executions>
 					<execution>
 					<id>jmeter-analysis</id>
-								<phase>install</phase>
+					<phase>install</phase>
 					<goals>
 						<goal>analyze</goal>
 					</goals>
@@ -430,7 +486,7 @@
 				<configuration>
 					<sourceDirFailed>false</sourceDirFailed>
 					<source>${project.root.dir}/results/performance/*</source>
-							<targetDirectory>${project.root.dir}/results/performance/reports</targetDirectory>
+					<targetDirectory>${project.root.dir}/results/performance/reports</targetDirectory>
 				</configuration>
 			</plugin>
 			-->

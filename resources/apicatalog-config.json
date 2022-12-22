@@ -1,0 +1,14 @@
+{
+   "fields":{
+      "field_image": "pingstatus-v1.png"
+   },
+   "taxonomy_terms":[
+      {
+         "vocabulary":"api_category",
+         "field":"field_categories",
+         "data":[
+            "CI-CD"
+         ]
+      }
+   ]
+}

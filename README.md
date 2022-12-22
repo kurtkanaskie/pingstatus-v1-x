@@ -271,40 +271,51 @@ Replacer copies and replaces the resources dir into the target. Note use of -Dap
 * mvn -P test install -Dskip.clean=true -Dskip.export=true
 
 ### Just update Developers, Products and Apps
-* mvn -P test process-resources apigee-config:developers apigee-config:apiproducts apigee-config:apps apigee-config:exportAppKeys -Dskip.clean=true
+* mvn -P test resources:copy-resources replacer:replace apigee-config:developers apigee-config:apiproducts apigee-config:apps apigee-config:exportAppKeys -Dskip.clean=true
 
 ### Just update resource files
-* mvn -P test process-resources apigee-config:resourcefiles -Dskip.clean=true 
+* mvn -P test resources:copy-resources replacer:replace apigee-config:resourcefiles -Dskip.clean=true 
 
 ### Just update Target Servers
-* mvn -P test process-resources apigee-config:targetservers -Dskip.clean=true 
+* mvn -P test resources:copy-resources replacer:replace apigee-config:targetservers -Dskip.clean=true 
 
 ### Export App keys
 * mvn -P test apigee-config:exportAppKeys -Dskip.clean=true 
 
 ### Export Apps and run the tests (after skip.clean)
-* mvn -P test process-resources apigee-config:exportAppKeys frontend:npm@integration -Dskip.clean=true  -Dapi.testtag=@get-ping
+* mvn -P test resources:copy-resources replacer:replace apigee-config:exportAppKeys frontend:npm@integration -Dskip.clean=true  -Dapi.testtag=@get-ping
 
 ### Just run the tests (after skip.clean) - for test iterations
-* mvn -P test process-resources -Dskip.clean=true frontend:npm@integration -Dapi.testtag=@health
+* mvn -P test resources:copy-resources replacer:replace -Dskip.clean=true frontend:npm@integration -Dapi.testtag=@health
 
 ### Skip Creating Apps and Overwrite latest revision
 * mvn -P test install -Dapigee.config.options=update -Dapigee.options=update -Dskip.apps=true -Dapi.testtag=@health
 
-### Just update the API Specs in Drupal
-* mvn -P test process-resources apigee-smartdocs:apidoc -Dapigee.smartdocs.config.options=update
+### Other discrete commands
+* mvn -P test validate (runs all validate phases: lint, apigeelint, unit)
+* mvn jshint:lint
+* mvn -P test frontend:npm@apigeelint
+* mvn -P test frontend:npm@unit
+* mvn -P test frontend:npm@integration
 
+### npm commands (after skip-clean)
+* npm run integration -- --tags @get-status
+
+## Drupal
+Enable modules JSON:API and HTTP Basic Authentication.
+
+Add taxonomy elements: /admin/structure/taxonomy
+
+The tool processes all files with `.yaml` or `.json` in the `portal.directory` as Open API Specifications. Putting other files with those suffices will cause errors.
+
+Use username not email for admin, e.g. maintenance
+
+### Just update the API Specs in Drupal
+* mvn -P test clean resources:copy-resources replacer:replace apigee-smartdocs:apidoc
+
+## Integrated Portal (not supported in X)
 ### Just update the Integrated Portal API Specs
 Via process-resources after replacements or when in target
-* mvn -X -P test process-resources apigee-config:specs -Dskip.clean=true 
-* mvn -P test -Dapigee.config.options=update apigee-config:specs 
+* mvn -P test resources:copy-resources replacer:replace apigee-config:specs 
 
-Via the source without replacements
-* mvn -P test -Dapigee.config.options=update apigee-config:specs -Dapigee.config.dir=resources/edge
 
-### Other discrete commands
-* mvn -Ptest validate (runs all validate phases: lint, apigeelint, unit)
-* mvn jshint:lint
-* mvn -Ptest frontend:npm@apigeelint
-* mvn -Ptest frontend:npm@unit
-* mvn -Ptest frontend:npm@integration

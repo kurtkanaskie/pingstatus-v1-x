@@ -1,0 +1,20 @@
+[
+    {
+        "name": "pingstatus-v1",
+        "encrypted": false,
+        "entry": [
+            {
+                "name": "target_basepath",
+                "value": "pingstatus-mock/v1"
+            },
+            {
+                "name": "logging.log",
+                "value": "true"
+            },
+            {
+                "name": "logging.level",
+                "value": "INFO"
+            }
+        ]
+    }
+]
