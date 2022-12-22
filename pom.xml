@@ -79,8 +79,8 @@
 				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
 				<!-- Smartdocs Drupal -->
 				<portal.url>https://developerx.kurtkanaskie.net</portal.url><!-- URL of the developer portal. --> 
-				<portal.username>${PortalUsername}</portal.username><!-- Username for the developer portal. -->
-				<portal.password>${PortalPassword}</portal.password><!-- Password for the developer portal. -->
+				<portal.username>${PortalUsername}</portal.username><!-- Username property from settings.xml. -->
+				<portal.password>${PortalPassword}</portal.password><!-- Password property from settings.xml. -->
 				<portal.format>yaml</portal.format><!-- Format of the OpenAPI specs. -->
 				<portal.api.doc.format>basic_html</portal.api.doc.format><!-- Format in the portal. Values: basic_html, restricted_html, full_html -->
 				<portal.directory>./target/resources/specs</portal.directory>
@@ -107,6 +107,15 @@
 				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-prod-service-account.json</apigee.serviceaccount.file>
 				<api.northbound.domain>xapi.kurtkanaskie.net</api.northbound.domain>
 				<api.testtag>@cors,@health,@errorHandling</api.testtag>
+				<!-- Smartdocs Drupal -->
+				<portal.url>https://developerx.kurtkanaskie.net</portal.url><!-- URL of the developer portal. --> 
+				<portal.username>${PortalUsername}</portal.username><!-- Username property from settings.xml. -->
+				<portal.password>${PortalPassword}</portal.password><!-- Password property from settings.xml. -->
+				<portal.format>yaml</portal.format><!-- Format of the OpenAPI specs. -->
+				<portal.api.doc.format>basic_html</portal.api.doc.format><!-- Format in the portal. Values: basic_html, restricted_html, full_html -->
+				<portal.directory>./target/resources/specs</portal.directory>
+				<apigee.smartdocs.config.file>./target/resources/apicatalog-config.json</apigee.smartdocs.config.file>
+				<apigee.smartdocs.config.options>update</apigee.smartdocs.config.options>
 			</properties>		
 		</profile>
 		<profile>

@@ -36,3 +36,6 @@ echo; echo prod username
 echo -n cicd-prod-service-account@apigeex-mint-kurt.iam.gserviceaccount.com | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-prod | base64
 # e.g. CiQAI9l/6RdvK0HMHvoK+i7nLDEMKtgwZXSkDTj0wK6IsCt3t2lLg0dNzD1pG5mW7jlSWUeaucTUKFdmk30xfo1s0XFyuG3hA
 
+echo; echo Drupal username and password
+cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_username.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64
+cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_password.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64

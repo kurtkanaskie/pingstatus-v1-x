@@ -10,18 +10,12 @@ steps:
   - "--key=cicd-test"
 - name: 'gcr.io/cloud-builders/mvn'
   entrypoint: 'bash'
-  args: ['-c', 'mvn -P $_PROFILE install -Dapigee.username=$$USERNAME -Dapigee.serviceaccount.file=$_SAFILE -Dapigee.org=$_ORG -Dapigee.env=$_ENV -Dapi.northbound.domain=$_NORTHBOUNDDOMAIN -Dapigee.config.options=$_CONFIGOPTIONS -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dapi.testtag=@health -Dcommit="${COMMIT_SHA} via GCP" -Dbranch=${BRANCH_NAME}']
+  args: ['-c', 'mvn -P test install -Dapigee.username=$$USERNAME -Dapigee.serviceaccount.file=$_SAFILE -Dportal.username=$$PORTAL_USERNAME -Dportal.password=$$PORTAL_PASSWORD -Dcommit="${COMMIT_SHA} via GCP" -Dbranch=${BRANCH_NAME}']
   dir: '.'
-  secretEnv: ['USERNAME']
+  secretEnv: ['USERNAME', 'PORTAL_USERNAME', 'PORTAL_PASSWORD']
 
 substitutions:
-  _ORG: apigeex-mint-kurt
-  _ENV: test
   _SAFILE: cicd-test.decrypted
-  _PROFILE: test
-  _NORTHBOUNDDOMAIN: xapi-test.kurtkanaskie.net
-  _CONFIGOPTIONS: update
-  _DEPLOYSUFFIX:
 options:
   substitution_option: 'ALLOW_LOOSE'
 
@@ -29,3 +23,5 @@ secrets:
 - kmsKeyName: projects/apigeex-mint-kurt/locations/global/keyRings/apigee-cicd-credentials/cryptoKeys/cicd-test
   secretEnv:
     USERNAME: CiQAOAtgovgJcGP7qB5RBncNPn73+hP77jv/xnc4SlbjywuAm+YSbABYqO8xn8N974eKbTrDW7v1T3LgxTawOJYDtFCuuS/KFFYX8RagDEBOVbdac1H4Re+MjP3y730urxWyatjpvRWE1Fm8Jn5UUxSVc97ajtVtsvfQ7FlE2jXKYtUgTuRpEpQTrYSbozUhaduI0A==
+    PORTAL_USERNAME: CiQAOAtgoijnkoU4ZaqTfwUCl2ltLA8OQou4/+eE4lNBDnSco0YSNABYqO8x+wRBdMWBAn1ECMM288K7pcNPI6xjVe/CdnCmeNwOZYFNYZ8d0tSh5N91eupMGfw=
+    PORTAL_PASSWORD: CiQAOAtgokt5zgFtZgrgdelC1pg0AlsocLDblZlxneORG1jyEVASNABYqO8xo8fyC87v9k3DUmOvZDkaZxd6Bh7W6LJlSIYTsbIINpxA79YS88Zw4aWSGmppvRE=
