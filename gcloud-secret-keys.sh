@@ -23,7 +23,9 @@ gcloud kms decrypt --location global --keyring apigee-cicd-credentials --key cic
 echo; echo test username
 echo -n cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64
 # e.g. CiQAyTb9u02Rmb3CFciv4j912QodXJfqhM61h9TCssQf9Xy4cLcir8422EdMjkz3WCGb3IM1MYNCs1CjKLbgzuqo9Q6wQdbK29tcChLhCry6rJAQT62qAjtDXX33N2lg
-
+echo; echo Drupal username and password
+cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_username.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64
+cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_password.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64
 
 # PROD =====================================================
 # initially: gcloud kms keys create cicd-prod --location global --keyring apigee-cicd-credentials --purpose encryption
@@ -37,5 +39,5 @@ echo -n cicd-prod-service-account@apigeex-mint-kurt.iam.gserviceaccount.com | gc
 # e.g. CiQAI9l/6RdvK0HMHvoK+i7nLDEMKtgwZXSkDTj0wK6IsCt3t2lLg0dNzD1pG5mW7jlSWUeaucTUKFdmk30xfo1s0XFyuG3hA
 
 echo; echo Drupal username and password
-cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_username.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64
-cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_password.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64
+cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_username.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-prod | base64
+cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_password.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-prod | base64
