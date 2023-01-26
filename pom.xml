@@ -38,9 +38,9 @@
 	-->
 	<profiles>
 		<profile>
-			<id>develop</id>
+			<id>dev</id>
 			<properties>
-				<apigee.profile>develop</apigee.profile>
+				<apigee.profile>dev</apigee.profile>
 				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.options>override</apigee.options>
@@ -51,7 +51,7 @@
 				<!-- -->
 				<!-- Override on command line or replace with your values -->
 				<apigee.org>apigeex-mint-kurt</apigee.org>
-				<apigee.env>develop</apigee.env>
+				<apigee.env>dev</apigee.env>
 				<apigee.username>cicd-dev-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
 				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-dev-service-account.json</apigee.serviceaccount.file>
 				<api.northbound.domain>xapi-dev.kurtkanaskie.net</api.northbound.domain>

@@ -4,7 +4,7 @@
     <FaultResponse>
         <Set>
             <Headers/>
-            <Payload contentType="text/plain">Resource not found at {proxy.pathsuffix}</Payload>
+            <Payload contentType="text/plain">This gets overridden by JS-proxy-fault-rules.js</Payload>
             <StatusCode>404</StatusCode>
             <ReasonPhrase>RF-path-suffix-not-found</ReasonPhrase>
         </Set>
