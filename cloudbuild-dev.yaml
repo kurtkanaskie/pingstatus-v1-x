@@ -16,7 +16,7 @@ steps:
 
 substitutions:
   _ORG: apigeex-mint-kurt
-  _ENV: develop
+  _ENV: dev
   _SAFILE: cicd-dev.decrypted
   _PROFILE: dev
   _NORTHBOUNDDOMAIN: xapi-dev.kurtkanaskie.net
