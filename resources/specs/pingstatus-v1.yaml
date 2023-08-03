@@ -3,7 +3,7 @@ info:
   version: 1.0.0
   title: pingstatus-v1-APIGEE_ENVIRONMENT
   description: 
-    Health checks for proxy (ping) and target backend (status).
+    Health checks for proxy alone (ping) and proxy to target backend (status).
   contact:
     email: kurtkanaskie@google.com
 servers:

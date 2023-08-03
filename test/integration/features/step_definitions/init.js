@@ -10,19 +10,21 @@ console.log('CURL TO: [https://' + config.apiconfig.domain + config.apiconfig.ba
 getCredsFromExport(config.apiconfig.app, config.apiconfig.product);
 console.log( "KEYS: " + keys.clientId + " " + keys.clientSecret);
 
-module.exports = function() {
-    // cleanup before every scenario
-    this.Before(function(scenario, callback) {
-        this.apickli = new apickli.Apickli('https', config.apiconfig.domain + config.apiconfig.basepath);
-        
-        this.apickli.storeValueInScenarioScope("apiproxy", config.apiconfig.apiproxy);
-        this.apickli.storeValueInScenarioScope("basepath", config.apiconfig.basepath);
-        // getCredsFromExport(config.apiconfig.app, config.apiconfig.product);
-        this.apickli.storeValueInScenarioScope("clientId", keys.clientId);
-        this.apickli.storeValueInScenarioScope("clientSecret", keys.clientSecret);
-        callback();
-    });
-};
+const {Before, setDefaultTimeout} = require('@cucumber/cucumber');
+
+setDefaultTimeout(60 * 1000); // this is in ms
+
+Before(function(scenario, callback) {
+      this.apickli = new apickli.Apickli('https', config.apiconfig.domain + config.apiconfig.basepath);
+      
+      this.apickli.storeValueInScenarioScope("apiproxy", config.apiconfig.apiproxy);
+      this.apickli.storeValueInScenarioScope("basepath", config.apiconfig.basepath);
+      // getCredsFromExport(config.apiconfig.app, config.apiconfig.product);
+      this.apickli.storeValueInScenarioScope("clientId", keys.clientId);
+      this.apickli.storeValueInScenarioScope("clientSecret", keys.clientSecret);
+      callback();
+  });
+
 
 // Just take the first match, no expiry or status available
 function getCredsFromExport(appName, productName){

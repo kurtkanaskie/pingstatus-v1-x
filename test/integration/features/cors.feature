@@ -9,7 +9,7 @@ Feature: CORS
         Given I set X-APIKey header to invalid_id_not_verified
         And I set Access-Control-Request-Method header to GET
         And I set Access-Control-Request-Headers header to x-apikey
-        And I set Origin header to https://apigeex-mint-kurt-exco.apigee.io
+        And I set Origin header to https://developeri.kurtkanaskie.net
         When I request OPTIONS for /ping
         Then response code should be 200
         And response header Access-Control-Allow-Headers should be x-apikey

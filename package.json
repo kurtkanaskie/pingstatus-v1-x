@@ -9,14 +9,16 @@
   "scripts": {
     "apigeelint": "node ./node_modules/apigeelint/cli.js -s ./apiproxy --profile apigeex -f table",
     "unit": "node ./node_modules/mocha/bin/mocha test/unit",
-    "integration": "node ./node_modules/cucumber/bin/cucumber.js target/test/integration/features"
+    "integration": "node ./node_modules/@cucumber/cucumber/bin/cucumber-js target/test/integration/features --format @cucumber/pretty-formatter --publish-quiet"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^7.x",
+    "@cucumber/pretty-formatter": "^1.0.0",
     "apickli": "^3.0.0",
     "apigeelint": "^2.x",
     "chai": "^4.3.4",
     "chai-fuzzy": "^1.6.1",
-    "cucumber": "^1.0.0",
+    "cucumber-pretty": "^6",
     "mocha": "^9.1.3",
     "sinon": "^12.0.1"
   },

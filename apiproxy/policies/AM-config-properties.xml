@@ -2,7 +2,7 @@
 <AssignMessage name="AM-config-properties">
     <DisplayName>AM-config-properties</DisplayName>
     <AssignVariable>
-        <Name>private.flow.target.basepath</Name>
+        <Name>flow.target.basepath</Name>
         <PropertySetRef>{apiproxy.name}.target_basepath</PropertySetRef>
     </AssignVariable>
 </AssignMessage>

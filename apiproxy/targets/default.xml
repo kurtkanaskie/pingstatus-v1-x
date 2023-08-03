@@ -35,9 +35,16 @@
         </Flow>
     </Flows>
     <HTTPTargetConnection>
+        <!-- Not OK -->
         <LoadBalancer>
             <Server name="pingstatus-v1"/>
         </LoadBalancer>
-        <Path>{private.flow.target.basepath}/{flow.target.pathsuffix}</Path>
+        <Path>{flow.target.basepath}/{flow.target.pathsuffix}</Path>
+        <!-- OK
+        <URL>https://xapi-dev.kurtkanaskie.net/pingstatus-mock/v1/{flow.target.pathsuffix}</URL>
+        -->
+        <!-- OK
+        <URL>https://xapi-dev.kurtkanaskie.net/{flow.target.basepath}/{flow.target.pathsuffix}</URL>
+        -->
     </HTTPTargetConnection>
 </TargetEndpoint>

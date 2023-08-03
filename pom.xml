@@ -55,7 +55,7 @@
 				<apigee.username>cicd-dev-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
 				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-dev-service-account.json</apigee.serviceaccount.file>
 				<api.northbound.domain>xapi-dev.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
+				<api.testtag>' or @cors or @health or @errorHandling or @WIP or '</api.testtag>
 			</properties>
 		</profile>
 		<profile>
@@ -76,13 +76,15 @@
 				<apigee.username>cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
 				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-test-service-account.json</apigee.serviceaccount.file>
 				<api.northbound.domain>xapi-test.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
+				<!-- Hack to pass in multiple args, ' char is part of the expression -->
+				<!-- without the 's the args get split into individual quoted values -->
+				<api.testtag>' or @cors or @health or @errorHandling or @WIP or '</api.testtag>
 				<!-- Smartdocs Drupal -->
-				<portal.url>https://developerx.kurtkanaskie.net</portal.url><!-- URL of the developer portal. --> 
-				<portal.username>${PortalUsername}</portal.username><!-- Username property from settings.xml. -->
-				<portal.password>${PortalPassword}</portal.password><!-- Password property from settings.xml. -->
-				<portal.format>yaml</portal.format><!-- Format of the OpenAPI specs. -->
-				<portal.api.doc.format>basic_html</portal.api.doc.format><!-- Format in the portal. Values: basic_html, restricted_html, full_html -->
+				<portal.url>https://developerx.kurtkanaskie.net</portal.url>
+				<portal.username>${PortalUsername}</portal.username>
+				<portal.password>${PortalPassword}</portal.password>
+				<portal.format>yaml</portal.format>
+				<portal.api.doc.format>basic_html</portal.api.doc.format>
 				<portal.directory>./target/resources/specs</portal.directory>
 				<apigee.smartdocs.config.file>./target/resources/apicatalog-config.json</apigee.smartdocs.config.file>
 				<apigee.smartdocs.config.options>update</apigee.smartdocs.config.options>
@@ -106,13 +108,13 @@
 				<apigee.username>cicd-prod-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
 				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-prod-service-account.json</apigee.serviceaccount.file>
 				<api.northbound.domain>xapi.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@cors,@health,@errorHandling</api.testtag>
+				<api.testtag>' or @cors or @health or @errorHandling or '</api.testtag>
 				<!-- Smartdocs Drupal -->
-				<portal.url>https://developerx.kurtkanaskie.net</portal.url><!-- URL of the developer portal. --> 
-				<portal.username>${PortalUsername}</portal.username><!-- Username property from settings.xml. -->
-				<portal.password>${PortalPassword}</portal.password><!-- Password property from settings.xml. -->
-				<portal.format>yaml</portal.format><!-- Format of the OpenAPI specs. -->
-				<portal.api.doc.format>basic_html</portal.api.doc.format><!-- Format in the portal. Values: basic_html, restricted_html, full_html -->
+				<portal.url>https://developerx.kurtkanaskie.net</portal.url>
+				<portal.username>${PortalUsername}</portal.username>
+				<portal.password>${PortalPassword}</portal.password>
+				<portal.format>yaml</portal.format>
+				<portal.api.doc.format>basic_html</portal.api.doc.format>
 				<portal.directory>./target/resources/specs</portal.directory>
 				<apigee.smartdocs.config.file>./target/resources/apicatalog-config.json</apigee.smartdocs.config.file>
 				<apigee.smartdocs.config.options>update</apigee.smartdocs.config.options>
@@ -136,28 +138,7 @@
 				<apigee.username>cicd-dev@apigeex-payg-kurt.iam.gserviceaccount.com</apigee.username>
 				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-payg-kurt-cicd-dev-service-account.json</apigee.serviceaccount.file>
 				<api.northbound.domain>papi-dev.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
-			</properties>
-		</profile>
-		<profile>
-			<id>hybrid-aio-eval</id>
-			<properties>
-				<apigee.profile>eval</apigee.profile>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.options>override</apigee.options>
-				<apigee.config.dir>target/resources/edge</apigee.config.dir>
-				<apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
-				<apigee.config.options>update</apigee.config.options>
-				<apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
-				<!-- -->
-				<!-- Override on command line or replace with your values -->
-				<apigee.org>apigee-hybrid-aio</apigee.org>
-				<apigee.env>develop</apigee.env>
-				<apigee.username>cicd-dev-service-account@apigeex-mint-kurt.iam.gserviceaccount.com</apigee.username>
-				<apigee.serviceaccount.file>/Users/kurtkanaskie/work/APIGEEX/SAs/apigeex-mint-kurt-cicd-dev-service-account.json</apigee.serviceaccount.file>
-				<api.northbound.domain>xapi-dev.kurtkanaskie.net</api.northbound.domain>
-				<api.testtag>@cors,@health,@errorHandling,@wip</api.testtag>
+				<api.testtag>' or @cors or @health or @errorHandling or @WIP or '</api.testtag>
 			</properties>
 		</profile>
 	</profiles>
@@ -367,7 +348,7 @@
 			<plugin>
 				<groupId>com.apigee.smartdocs.config</groupId>
 				<artifactId>apigee-smartdocs-maven-plugin</artifactId>
-				<version>2.2.3</version>
+				<version>2.2.4</version>
 				<configuration>
 					<skip>${skip.smartdocs}</skip>
 				</configuration>
@@ -386,7 +367,7 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.8.0</version>
+				<version>1.13.3</version>
 				<!-- NOTE: put executable in targetnode, otherwise uses node and deploy plugin thinks its a node.js proxy -->
 				<configuration>
 					<installDirectory>targetnode</installDirectory>

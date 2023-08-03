@@ -286,7 +286,10 @@ Replacer copies and replaces the resources dir into the target. Note use of -Dap
 * mvn -P test resources:copy-resources replacer:replace apigee-config:exportAppKeys frontend:npm@integration -Dskip.clean=true  -Dapi.testtag=@get-ping
 
 ### Just run the tests (after skip.clean) - for test iterations
-* mvn -P test resources:copy-resources replacer:replace -Dskip.clean=true frontend:npm@integration -Dapi.testtag=@health
+* mvn -P test resources:copy-resources replacer:replace frontend:npm@integration -Dapi.testtag=@health
+* npm run integration
+* npm run integration -- --tags @get-status
+* npm run integration -- --tags @cors
 
 ### Skip Creating Apps and Overwrite latest revision
 * mvn -P test install -Dapigee.config.options=update -Dapigee.options=update -Dskip.apps=true -Dapi.testtag=@health
@@ -297,9 +300,6 @@ Replacer copies and replaces the resources dir into the target. Note use of -Dap
 * mvn -P test frontend:npm@apigeelint
 * mvn -P test frontend:npm@unit
 * mvn -P test frontend:npm@integration
-
-### npm commands (after skip-clean)
-* npm run integration -- --tags @get-status
 
 ## Drupal
 Enable modules JSON:API and HTTP Basic Authentication.

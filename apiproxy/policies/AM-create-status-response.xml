@@ -34,5 +34,14 @@
         <StatusCode>200</StatusCode>
         <ReasonPhrase>OK</ReasonPhrase>
     </Set>
-    <AssignTo createNew="true" transport="http" type="response"/>
+    <AssignVariable>
+        <Name>response.header.debug-flow-target-pathsuffix</Name>
+        <Value>NOT_SET</Value>
+        <Ref>flow.target.pathsuffix</Ref>
+    </AssignVariable>flow.target.pathsuffix
+    <AssignVariable>
+        <Name>response.header.debug-flow-target-basepath</Name>
+        <Value>NOT_SET</Value>
+        <Ref>flow.target.basepath</Ref>
+    </AssignVariable>
 </AssignMessage>

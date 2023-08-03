@@ -28,5 +28,5 @@ options:
 secrets:
 - kmsKeyName: projects/apigeex-mint-kurt/locations/global/keyRings/apigee-cicd-credentials/cryptoKeys/cicd-dev
   secretEnv:
-    USERNAME: CiQAZ2M7aOFmxGtFj19CnndMR5YgPMXJK/3tOvB7txEpWO7fr+QSaAAIjuzTg5f5BiKvAE+vWSrQ9rAT14Df+GphI8LMZSHRsZL+pRBrsqwl8nfqswr5yCNnCuTD6451V8ruTM5Ljro6bEJXpSVAoKYbbgg10ipNuajFxgWJryPm8xLRwyHp2S/2slXmYKy4
+    USERNAME: CiQAPi/lTtResGcwGj1GK+bImae3PBfRAQiKXDl+dRtnR9xMogkSawAZitCxGqsv7fG38qfTiZPFNM5BgeIwkPTV7STSok7pXBU+MeXEphnIK0yafsyUfP1myFv35R1PjLQQE1qt2/0yR5E6mVg3QByPxHu+8jGKAHfqKvb2jstnCuK64Qkp7CbPPJHSJrvV/l/T
 
