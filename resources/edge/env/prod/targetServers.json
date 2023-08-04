@@ -1,7 +1,7 @@
 [
     {
         "name": "pingstatus-v1",
-        "host": "httpbin.org",
+        "host": "mocktarget.apigee.net",
         "isEnabled": true,
         "port": 443,
         "sSLInfo": {
