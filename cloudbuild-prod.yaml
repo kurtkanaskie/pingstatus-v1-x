@@ -15,13 +15,19 @@ steps:
   secretEnv: ['USERNAME', 'PORTAL_USERNAME', 'PORTAL_PASSWORD']
 
 substitutions:
+  _ORG: apigeex-mint-kurt
+  _ENV: prod
   _SAFILE: cicd-prod.decrypted
+  _PROFILE: prod
+  _NORTHBOUNDDOMAIN: xapi.kurtkanaskie.net
+  _CONFIGOPTIONS: update
+  _DEPLOYSUFFIX:
 options:
   substitution_option: 'ALLOW_LOOSE'
 
 secrets:
 - kmsKeyName: projects/apigeex-mint-kurt/locations/global/keyRings/apigee-cicd-credentials/cryptoKeys/cicd-prod
   secretEnv:
-    USERNAME: CCiQAUgGSU1AnlzGTJxQoHqhuMiHDDxdqRLJjE//Z2jJSqC8O0OMSbABw2zfrbUY4vthHLHpU8WudXHV229V2266E6dJ3X5AkeWwxn7TvKAn1TgkOEPSnLGeh/1JTxUJC5IalPl3IF6/7JfJic9tEVJ7vL2OSm/ySkgga2N2v86rDOM9FuF7rd+t1qGdINHyE+96lFA==
-    PORTAL_USERNAME: CiQAUgGSU4SDil7fKTA5UdqgrZ/A3fxzm8vNKL61BHGRAzZhPF0SNABw2zfrkPlDE4yUuZvTVvAm/EiIyv3PudUDdeXCVWN4/T3tSJAnne2+Uc1Y5laexBWEzfo=
-    PORTAL_PASSWORD: CiQAUgGSU66IQ/OMe+7nQ8ojONS6Zs9M/Chx0yZljQ/4n2I9geoSNQBw2zfrXlVwTQaXmE8VopiYZBFvl3BhtpaUX/Cg2qJ7/iqtIXYwDP/NZydGNMxZpbYVp0gw
+    USERNAME: CiQAUgGSUxkgdjjUKiC9qWZvagE+BnBiCHznmDgHFqClCu7wrrkSbABw2zfrJ/gVi2GD9ojk6JlVrcHm0q+j07fMWq8xDhi/l5+s/OPVEsPwlk7qKG6ngSrR6cSCYnKwwtL0DJlduESruFJfYwCNCFKfu62EG75gGE24ZZGugCErz+D0fMaO2Hia9NGxhhNgr5OYXQ==
+    PORTAL_USERNAME: CiQAUgGSU8/e55OfNXMoAqbROPC/fgm4hasYff2En5kBtE3IxSESNABw2zfrdx3WeiTVcgNh3zJF+hR/s9nTejMopvx7twmidOF37GAAoaRswYBS3qxdMeHQvR0=
+    PORTAL_PASSWORD: CiQAUgGSUx5/Hd1XuQ92I3g+JT5PAMU5knOP2U8/0m4xyMnMK30SNQBw2zfrMBIclcpxS32fMqN/pyPejCs0wBPLUbfZiaeYBfJwWENoJIIiJT6mnJDx2Q7n6DKq
