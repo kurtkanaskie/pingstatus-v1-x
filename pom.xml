@@ -343,26 +343,6 @@
 				</executions>
 			</plugin>
 
-			<!-- apigee Smartdocs API Specs for Drupal-->
-			<!-- apigee-smartdocs:apidoc -->
-			<plugin>
-				<groupId>com.apigee.smartdocs.config</groupId>
-				<artifactId>apigee-smartdocs-maven-plugin</artifactId>
-				<version>2.2.4</version>
-				<configuration>
-					<skip>${skip.smartdocs}</skip>
-				</configuration>
-				<executions>
-					<execution>
-						<id>smartdocs-deploy</id>
-						<phase>install</phase>
-						<goals>
-							<goal>apidoc</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			
 			<!-- install node, npm install, run apigeelint, run unit, run integration -->
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
@@ -424,6 +404,27 @@
 							<skip>${skip.integration}</skip>
 							<arguments>run integration -- --tags ${api.testtag}</arguments>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Location is important, put here to run after integration -->
+			<!-- apigee Smartdocs API Specs for Drupal-->
+			<!-- apigee-smartdocs:apidoc -->
+			<plugin>
+				<groupId>com.apigee.smartdocs.config</groupId>
+				<artifactId>apigee-smartdocs-maven-plugin</artifactId>
+				<version>2.2.4</version>
+				<configuration>
+					<skip>${skip.smartdocs}</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<id>smartdocs-deploy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>apidoc</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
