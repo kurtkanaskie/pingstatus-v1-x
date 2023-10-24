@@ -1,4 +1,4 @@
-# Ping and Status API for Apigee X
+# Ping and Status APIs for Apigee X
 
 This proxy demonstrates a simple design to demonstrate a full CI/CD lifecycle.
 It uses the following health check or monitoring endpoints:
