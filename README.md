@@ -59,32 +59,57 @@ The "prod" branch is the next "higher" level branch and is used for deployment v
 
 ## Maven configuration
 
-Set your $HOME/.m2/settings.xml  (optional this sets private Maven variable values)
+Maven uses a Service Account for the username and Service Account credentials for each CI/CD lifecycle. \
+For example:
+- cicd-dev-service-account@apigeex-mint-kurt.iam.gserviceaccount.com
+- cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com
+- cicd-prod-service-account@apigeex-mint-kurt.iam.gserviceaccount.com
 
-Example:
+Create and download Service Accounts and keys. See [Service Account Overview](https://cloud.google.com/iam/docs/service-account-overview) for details.
+
+### Local Install and Set Up
+In the source directory there is a `package.json` file that holds the required node packages.
+
+* Install node
+* Install maven
+* Install
+    * cd source directory
+    * `npm install` (creates node_modules)
+
+Update the pom.xml profile with your values:
 ```
-<?xml version="1.0"?>
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-                 https://maven.apache.org/xsd/settings-1.0.0.xsd">
-    <profiles>
-        <profile>
-            <id>test</id>
-            <!-- These are also the values for environment variables used by set-edge-env-values.sh for the build engine -->
-            <properties>
-                <EdgeOrg>yourorgname</EdgeOrg>
-                <EdgeEnv>yourenv</EdgeEnv>
-                <EdgeNorthboundDomain>yourourgname-yourenv.apigee.net</EdgeNorthboundDomain>
-                <EdgeUsername>cicd-test-service-account@yourproject.iam.gserviceaccount.com</EdgeUsername>
-                <!-- The unencrypted file, cloudbuild uses encrypted file during build -->
-                <EdgeServiceAccountFile>path/to/sa.json</EdgeServiceAccountFile>
-                <EdgeAuthtype>oauth</EdgeAuthtype>
-            </properties>
-        </profile>
-        ...
-    </profiles>
-</settings>
+<profile>
+    <id>test</id>
+    <properties>
+        <apigee.profile>test</apigee.profile>
+        <apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+        <apigee.apiversion>v1</apigee.apiversion>
+        <apigee.options>override</apigee.options>
+        <apigee.config.dir>target/resources/edge</apigee.config.dir>
+        <apigee.config.exportDir>target/test/integration</apigee.config.exportDir>
+        <apigee.config.options>update</apigee.config.options>
+        <apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
+        <!-- -->
+        <!-- Override on command line or replace with your values -->
+        <apigee.org>your-org-name</apigee.org>
+        <apigee.env>test</apigee.env>
+        <apigee.username>cicd-test-service-account@your-org-name.iam.gserviceaccount.com</apigee.username>
+        <apigee.serviceaccount.file>/Users/yourusername/work/APIGEEX/SAs/your-org-name-cicd-test-service-account.json</apigee.serviceaccount.file>
+        <api.northbound.domain>xapi-test.your.domain</api.northbound.domain>
+        <!-- Hack to pass in multiple args, ' char is part of the expression -->
+        <!-- without the 's the args get split into individual quoted values -->
+        <api.testtag>' or @cors or @health or @errorHandling or @WIP or '</api.testtag>
+        <!-- Smartdocs Drupal -->
+        <portal.url>https://developerx.your.domain</portal.url>
+        <portal.username>${PortalUsername}</portal.username>
+        <portal.password>${PortalPassword}</portal.password>
+        <portal.format>yaml</portal.format>
+        <portal.api.doc.format>basic_html</portal.api.doc.format>
+        <portal.directory>./target/resources/specs</portal.directory>
+        <apigee.smartdocs.config.file>./target/resources/apicatalog-config.json</apigee.smartdocs.config.file>
+        <apigee.smartdocs.config.options>create</apigee.smartdocs.config.options>
+    </properties>
+</profile>
 ```
 ##### Initial build and deploy to pingstatus-v1
 ```
@@ -92,7 +117,7 @@ mvn -P test install
 ```
 ## Git Setup
 
-**NOTE:** This API proxy repository does not support a "feature" branch with replacement of proxy mame and basepath.
+**NOTE:** This API proxy repository does not support a "feature" branch with replacement of proxy name and basepath.
 
 ### Intitially Create Branches based on SDLC (dev --> test --> prod)
 Git suggests:
@@ -165,30 +190,8 @@ git checkout dev
 git checkout dev
 ```
 
-## Maven
-### Jenkins Commands
-The Jenkins build server runs Maven with these commands.
-
-Set Environment variables via script
-```
-./set-edge-env-values.sh > edge.properties
-```
-This allows a single build project to be used for each of the branches, depending on which branch changed.
-
-```
-install -P${EdgeProfile} -Dapigee.org=${EdgeOrg} -Dapigee.env=${EdgeEnv} -Dapi.northbound.domain=${EdgeNorthboundDomain} -Dapigee.username=${EdgeInstallUsername} -Dapigee.serviceaccount.file=${EdgeServiceAccountFile} -Dapigee.config.options=update -Dapigee.config.dir=target/resources/edge -Dapigee.config.exportDir=target/test/integration -Dcommit=${GIT_COMMIT} -Dbranch=${GIT_BRANCH}
-```
-## Local Install and Set Up
-In the source directory there is a `package.json` file that holds the required node packages.
-
-* Install node
-* Install maven
-* Install
-    * cd source directory
-    * `npm install` (creates node_modules)
-
 ## Running Tests Locally
-Often it is necessary to interate over tests for a feature development. Since Apickli/Cucumber tests are mostly text based, its easy to do this locally.
+Often it is necessary to iterate over tests to complete test development. Since Apickli/Cucumber tests are mostly text based, its easy to do this locally.
 Here are the steps:
 1. Install your proxy to Apigee and skip cleaning the target (-Dskip-clean=true)
 ```
@@ -259,7 +262,8 @@ Replacer copies and replaces the resources dir into the target. Note use of -Dap
 * mvn -P test install 
 
 ### Cloud Build all at once
-* cloud-build-local --dryrun=true --config=cloudbuild-dev.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
+Cloud Build uses encrypted Service Account credentials and username/password for Portal. See the [gcloud-secret-keys.sh](gcloud-secret-keys.sh) script for steps to create the keyring and keys, and to create the encrypted secrets for use by Cloud Build.
+
 * cloud-build-local --dryrun=true --config=cloudbuild-test.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
 * cloud-build-local --dryrun=false --config=cloudbuild-test.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
 

@@ -87,7 +87,7 @@
 				<portal.api.doc.format>basic_html</portal.api.doc.format>
 				<portal.directory>./target/resources/specs</portal.directory>
 				<apigee.smartdocs.config.file>./target/resources/apicatalog-config.json</apigee.smartdocs.config.file>
-				<apigee.smartdocs.config.options>update</apigee.smartdocs.config.options>
+				<apigee.smartdocs.config.options>create</apigee.smartdocs.config.options>
 			</properties>
 		</profile>
 		<profile>
