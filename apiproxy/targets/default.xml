@@ -35,7 +35,7 @@
         </Flow>
     </Flows>
     <HTTPTargetConnection>
-        <!-- Not OK -->
+        <!-- OK -->
         <LoadBalancer>
             <Server name="pingstatus-v1"/>
         </LoadBalancer>

@@ -284,6 +284,9 @@ Cloud Build uses encrypted Service Account credentials and username/password for
 ### Just update Target Servers
 * mvn -P test resources:copy-resources replacer:replace apigee-config:targetservers -Dskip.clean=true 
 
+### Just update resource files and Target Servers
+mvn -P test resources:copy-resources replacer:replace apigee-config:resourcefiles apigee-config:targetservers -Dskip.clean=true 
+
 ### Export App keys
 * mvn -P test apigee-config:exportAppKeys -Dskip.clean=true 
 
