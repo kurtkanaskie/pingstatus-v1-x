@@ -3,6 +3,8 @@ steps:
   args:
   - kms
   - decrypt
+  - "--account=cicd-dev-service-account@apigeex-mint-kurt.iam.gserviceaccount.com"
+  - "--project=apigeex-mint-kurt"
   - "--ciphertext-file=cicd-test.encrypted"
   - "--plaintext-file=cicd-test.decrypted"
   - "--location=global"
@@ -29,5 +31,5 @@ secrets:
 - kmsKeyName: projects/apigeex-mint-kurt/locations/global/keyRings/apigee-cicd-credentials/cryptoKeys/cicd-test
   secretEnv:
     USERNAME: CiQAOAtgokcZ2CjZEgGFEVssh4BqoRwGDkoOeUKpgc6q/AkugaMSbABYqO8xXnW57JYWMgLH0gwbb+edjdjGNGOmg8TPudbe2bytCxLVZnfjvoWmLWPvtmWb24+YthTBnFvqZg1YI4c1lyjA7ny1NthWfOOiJUkLltkRwXmoZz+1sNa3oRiX6fCCy7B89298BmfGWw==
-    PORTAL_USERNAME: CiQAOAtgog/FZ/zhPkqRCC35SMkVBsSZKg0mnKwhdyjSqFI/Z/QSNABYqO8x7Kz/bhTMu5uBxWoenDlaDemQ7Xx28YPrIx52Lcq3HRZfxbKbRf3wzfBkLwuApbI=
-    PORTAL_PASSWORD: CiQAOAtgompFN4H4bLrqdgObzvDP3vL61D6qXfDT7W0fLUaAbp4SNQBYqO8xOhl23uyBSvNKceMZXX344AXdcMHi1w18Gp6jN/FIUNJv+OjA12yYIU6kE7WIY1s0
+    PORTAL_USERNAME: CiQAOAtgonTg/BFjrCGokLecm1lybhLdSnsL8dcS2dzPVWTDRpcSNABYqO8xH1oYisqirlid0IL48n+oTe02f5nTr60GmWjM/hTtfKg+vsfCTPR2b3mSl5RKPDA=
+    PORTAL_PASSWORD: CiQAOAtgog3mXMqgPmojMFvQV03D/OncXg8X6yQWjP7BvxtXe1ESNQBYqO8xqVXBKQH+ybc6R1sdE+3IG6HXHd27Q1GbkCGvHuTcfJhgtRuEAh2cmWTeGT+Rhw5h

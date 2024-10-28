@@ -27,7 +27,10 @@ echo; echo dev
 echo username SA
 echo -n cicd-dev-service-account@apigeex-mint-kurt.iam.gserviceaccount.com | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-dev | base64
 # CiQAPi/lTgPWPOse+15zqPc8xYpcJgia1gsrg13D+oZI1sRPh1QSawAZitCxmfaRbGK1JoKR5qYDZWJtN3odYhR7mleWSBVmpz1c3FUg/ul7vLNKpLfdXtgJffVsvq5AGl16YjTnuADruQw0AVEubRkpg98xKmyBDh8Gkap3RA4mJO8O56+BEzUrf47JcVMVKSbj
-echo; echo No Drupal username and password
+cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_username.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-dev | base64
+# CiQAPi/lTuGJVvQ4lZnz06jt21KZgqJ5C/ab1HY4yv7ZS3UK3LoSNAAZitCxNmlm879zSPwswGKWzNyNZdFM+G5iCN/KklIqjaBABZRDQjfVucxoHEf0b/Xaekg=
+cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_password.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-dev | base64
+# CiQAPi/lTpT1hAODwpdWWtHUkwIOkg4zw+R55d3xrZX6jUp2PYoSNQAZitCxsONPmco55Zq+1crtdRjlKVxjyYHIlWT4IkmfVSWRoc0F8agDtY/96OXceZTC6cB8
 
 # TEST =====================================================
 # Create key for this environment
@@ -42,7 +45,9 @@ echo -n cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com | gc
 # CiQAOAtgonXoRxxvhtOR3g0UKNDe4CBc4yMMOy4vqv34pJK6zoQSbABYqO8xOh7cfLxt1XGNV5VSJerQwcRr3852//V+v2cGXzEfqaWIoTFcTtxbHFDqWgSXDVA5rH5RFgECEuUT+a7BRGQP2vdQsW0IXw55G2v2kKK/VbrZbFTUplFow+ki9sgE6CfEGpvPc7gKsQ==
 echo; echo Drupal username and password
 cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_username.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64
+# CiQAOAtgonTg/BFjrCGokLecm1lybhLdSnsL8dcS2dzPVWTDRpcSNABYqO8xH1oYisqirlid0IL48n+oTe02f5nTr60GmWjM/hTtfKg+vsfCTPR2b3mSl5RKPDA=
 cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_password.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64
+# CiQAOAtgog3mXMqgPmojMFvQV03D/OncXg8X6yQWjP7BvxtXe1ESNQBYqO8xqVXBKQH+ybc6R1sdE+3IG6HXHd27Q1GbkCGvHuTcfJhgtRuEAh2cmWTeGT+Rhw5h
 
 # PROD =====================================================
 # initially: gcloud kms keys create cicd-prod --location global --keyring apigee-cicd-credentials --purpose encryption

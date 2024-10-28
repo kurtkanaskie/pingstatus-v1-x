@@ -289,8 +289,11 @@ Replacer copies and replaces the resources dir into the target. Note use of -Dap
 ### Cloud Build all at once
 Cloud Build uses encrypted Service Account credentials and username/password for Portal. See the [gcloud-secret-keys.sh](gcloud-secret-keys.sh) script for steps to create the keyring and keys, and to create the encrypted secrets for use by Cloud Build.
 
-* cloud-build-local --dryrun=true --config=cloudbuild-test.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
-* cloud-build-local --dryrun=false --config=cloudbuild-test.yaml --substitutions=BRANCH_NAME=local-gcloud,COMMIT_SHA=none .
+```
+cloud-build-local --dryrun=true --config=cloudbuild-dev.yaml --substitutions=BRANCH_NAME=local-gcloud-dev,COMMIT_SHA=none .
+
+cloud-build-local --dryrun=false --config=cloudbuild-dev.yaml --substitutions=BRANCH_NAME=local-gcloud-dev,COMMIT_SHA=none .
+```
 
 ## Other commands for iterations
 
