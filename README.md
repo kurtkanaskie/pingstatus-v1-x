@@ -22,12 +22,31 @@ This code is open source.
 * git clone
 * Specify your profile parameters on the command line or edit pom.xml profile
 ```
-mvn -P test install \
+export ORG=your_org_name
+export ENV=your_env_name
+export ENVGROUP_HOSTNAME=your.northbound.hostname
+export SA_USER=cicd-test-service-account@${ORG}.iam.gserviceaccount.com
+export SA_CREDS=/path/to/your/sa/keyfile.json
+export PORTAL_URL=admin_username
+export PORTAL_USERNAME=admin_username
+export PORTAL_PASSWORD=admin_password
+
+mvn -P dev install \
     -Dapigee.org=$ORG \
     -Dapigee.env=$ENV \
+    -Dapi.northbound.domain=$ENVGROUP_HOSTNAME \
     -Dapigee.username=$SA_EMAIL \
-    -Dapigee.serviceaccount.file=$SA_KEY_FILE \
+    -Dapigee.serviceaccount.file=$SA_KEY_FILE
+
+or
+mvn -P dev install \
+    -Dapigee.org=$ORG \
+    -Dapigee.env=$ENV \
     -Dapi.northbound.domain=$ENVGROUP_HOSTNAME
+    -Dbearer=$(gcloud auth print-access-token) \
+    -Dportal.url=$DRUPAL_PORTAL_URL \
+    -Dportal.username=$PORTAL_USERNAME \
+    -Dportal.password=$PORTAL_PASSWORD"
 ```
 
 ## Overview
@@ -319,11 +338,15 @@ The tool processes all files with `.yaml` or `.json` in the `portal.directory` a
 Use username not email for admin, e.g. maintenance
 
 ### Just update the API Specs in Drupal
-* mvn -P test clean resources:copy-resources replacer:replace apigee-smartdocs:apidoc
+```
+mvn -P dev clean resources:copy-resources replacer:replace apigee-smartdocs:apidoc
+```
 
-## Integrated Portal (not supported in X)
 ### Just update the Integrated Portal API Specs
 Via process-resources after replacements or when in target
-* mvn -P test resources:copy-resources replacer:replace apigee-config:specs 
+```
+mvn -P dev -Dbearer=$(gcloud auth print-access-token) resources:copy-resources replacer:replace apigee-config:apicategories 
+mvn -P dev -Dbearer=$(gcloud auth print-access-token) resources:copy-resources replacer:replace apigee-config:apidocs 
+```
 
 

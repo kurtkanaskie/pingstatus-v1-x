@@ -26,7 +26,7 @@ gcloud kms encrypt --location global --keyring apigee-cicd-credentials --key cic
 echo; echo dev 
 echo username SA
 echo -n cicd-dev-service-account@apigeex-mint-kurt.iam.gserviceaccount.com | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-dev | base64
-# e.g. CiQAyTb9u02Rmb3CFciv4j912QodXJfqhM61h9TCssQf9Xy4cLcir8422EdMjkz3WCGb3IM1MYNCs1CjKLbgzuqo9Q6wQdbK29tcChLhCry6rJAQT62qAjtDXX33N2lg
+# CiQAPi/lTgPWPOse+15zqPc8xYpcJgia1gsrg13D+oZI1sRPh1QSawAZitCxmfaRbGK1JoKR5qYDZWJtN3odYhR7mleWSBVmpz1c3FUg/ul7vLNKpLfdXtgJffVsvq5AGl16YjTnuADruQw0AVEubRkpg98xKmyBDh8Gkap3RA4mJO8O56+BEzUrf47JcVMVKSbj
 echo; echo No Drupal username and password
 
 # TEST =====================================================
@@ -39,7 +39,7 @@ gcloud kms encrypt --location global --keyring apigee-cicd-credentials --key cic
 echo; echo test 
 echo username SA
 echo -n cicd-test-service-account@apigeex-mint-kurt.iam.gserviceaccount.com | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64
-# e.g. CiQAyTb9u02Rmb3CFciv4j912QodXJfqhM61h9TCssQf9Xy4cLcir8422EdMjkz3WCGb3IM1MYNCs1CjKLbgzuqo9Q6wQdbK29tcChLhCry6rJAQT62qAjtDXX33N2lg
+# CiQAOAtgonXoRxxvhtOR3g0UKNDe4CBc4yMMOy4vqv34pJK6zoQSbABYqO8xOh7cfLxt1XGNV5VSJerQwcRr3852//V+v2cGXzEfqaWIoTFcTtxbHFDqWgSXDVA5rH5RFgECEuUT+a7BRGQP2vdQsW0IXw55G2v2kKK/VbrZbFTUplFow+ki9sgE6CfEGpvPc7gKsQ==
 echo; echo Drupal username and password
 cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_username.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64
 cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_password.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-test | base64
@@ -53,7 +53,12 @@ gcloud kms encrypt --location global --keyring apigee-cicd-credentials --key cic
 echo; echo prod 
 echo username SA
 echo -n cicd-prod-service-account@apigeex-mint-kurt.iam.gserviceaccount.com | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-prod | base64
-# e.g. CiQAI9l/6RdvK0HMHvoK+i7nLDEMKtgwZXSkDTj0wK6IsCt3t2lLg0dNzD1pG5mW7jlSWUeaucTUKFdmk30xfo1s0XFyuG3hA
+# CiQAUgGSUx2rTas/t4DMw55st64TzGQ2thH6+NrMURPPhHdpB5ASbABw2zfrnHX5gyQEgUykfRlqkb3GUpYu93EomvvJQpiXQSKbDDAFyAz4cHxYTnBn/usaSh8+ax2pSJtv9BQE7IkM32d+3ehSV48bnK5X0B/LP/5ItAfWiLf0mDA4R/oARUndyrCunjtloHvx8w==
 echo; echo Drupal username and password
 cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_username.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-prod | base64
+# CiQAUgGSU15tC3Z+62pZQlmI1T+jTjLVl4C0vRHfqA36P3welPUSNABw2zfrKWQA8nCGp56ah9tspGClhe0gLQc47v8kUZ/qvsR31UYbrvCxvBQlqw/fB3j9Uhc=
 cat /Users/kurtkanaskie/work/APIGEEX/SAs/portal_password.txt | gcloud kms encrypt --plaintext-file=- --ciphertext-file=- --location=global --keyring=apigee-cicd-credentials --key=cicd-prod | base64
+# CiQAUgGSU+9esomEzr860R54qZmQbh2HyG/6Rc0RWP2fIMA41A8SNQBw2zfrn2FZrV8cwZV8+GUKx78lVktULl46ekAg4BiAmoKxHWfWnBcJAKBBMpcd4kjBE+Fy
+
+
+
