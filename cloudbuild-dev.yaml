@@ -29,6 +29,6 @@ secrets:
 - kmsKeyName: projects/apigeex-mint-kurt/locations/global/keyRings/apigee-cicd-credentials/cryptoKeys/cicd-dev
   secretEnv:
     USERNAME: CiQAPi/lTtResGcwGj1GK+bImae3PBfRAQiKXDl+dRtnR9xMogkSawAZitCxGqsv7fG38qfTiZPFNM5BgeIwkPTV7STSok7pXBU+MeXEphnIK0yafsyUfP1myFv35R1PjLQQE1qt2/0yR5E6mVg3QByPxHu+8jGKAHfqKvb2jstnCuK64Qkp7CbPPJHSJrvV/l/T
-    PORTAL_USERNAME: CiQAOAtgog/FZ/zhPkqRCC35SMkVBsSZKg0mnKwhdyjSqFI/Z/QSNABYqO8x7Kz/bhTMu5uBxWoenDlaDemQ7Xx28YPrIx52Lcq3HRZfxbKbRf3wzfBkLwuApbI=
-    PORTAL_PASSWORD: CiQAOAtgompFN4H4bLrqdgObzvDP3vL61D6qXfDT7W0fLUaAbp4SNQBYqO8xOhl23uyBSvNKceMZXX344AXdcMHi1w18Gp6jN/FIUNJv+OjA12yYIU6kE7WIY1s0
+    PORTAL_USERNAME: CiQAPi/lTuGJVvQ4lZnz06jt21KZgqJ5C/ab1HY4yv7ZS3UK3LoSNAAZitCxNmlm879zSPwswGKWzNyNZdFM+G5iCN/KklIqjaBABZRDQjfVucxoHEf0b/Xaekg=
+    PORTAL_PASSWORD: CiQAPi/lTpT1hAODwpdWWtHUkwIOkg4zw+R55d3xrZX6jUp2PYoSNQAZitCxsONPmco55Zq+1crtdRjlKVxjyYHIlWT4IkmfVSWRoc0F8agDtY/96OXceZTC6cB8
 
