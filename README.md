@@ -38,7 +38,7 @@ mvn -P dev install \
     -Dapigee.username=$SA_EMAIL \
     -Dapigee.serviceaccount.file=$SA_KEY_FILE
 
-or
+# or
 mvn -P dev install \
     -Dapigee.org=$ORG \
     -Dapigee.env=$ENV \
@@ -47,6 +47,9 @@ mvn -P dev install \
     -Dportal.url=$DRUPAL_PORTAL_URL \
     -Dportal.username=$PORTAL_USERNAME \
     -Dportal.password=$PORTAL_PASSWORD"
+
+# or if defaults are set per profile, and Portal credentials in $HOME/.m2/settings.xml
+mvn -P dev install -Dbearer=$(gcloud auth print-access-token)
 ```
 
 ## Overview
@@ -68,7 +71,7 @@ Basically, everything the build engine does (Maven and other tools) can be done 
 There are three branches, dev, test and prod which align to SDLC phases.
 
 ### dev branch
-The dev branch is the "main" branch and is used for deployment using Maven to the "test" Programmable Proxy environment in Apigee.
+The "dev" branch is the main branch and is used for deployment using Maven to the "dev" Programmable Proxy environment in Apigee.
 
 ### test branch
 The "test" branch is the next "higher" level branch and is used for deployment using Maven to the "test" Programmable Proxy environment in Apigee.
@@ -95,12 +98,12 @@ In the source directory there is a `package.json` file that holds the required n
     * cd source directory
     * `npm install` (creates node_modules)
 
-Update the pom.xml profile with your values:
+Update the pom.xml profile with your values for: YOUR_ORG_NAME, YOUR_ENVGROUP_HOSTNAME, YOUR_DRUPAL_PORTAL_DOMAIN and INTEGRATED_PORTAL_SITE_ID.
 ```
 <profile>
-    <id>test</id>
+    <id>dev</id>
     <properties>
-        <apigee.profile>test</apigee.profile>
+        <apigee.profile>dev</apigee.profile>
         <apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
         <apigee.apiversion>v1</apigee.apiversion>
         <apigee.options>override</apigee.options>
@@ -109,39 +112,42 @@ Update the pom.xml profile with your values:
         <apigee.config.options>update</apigee.config.options>
         <apigee.app.ignoreAPIProducts>true</apigee.app.ignoreAPIProducts>
         <!-- -->
-        <!-- Override on command line or replace with your values -->
-        <apigee.org>your-org-name</apigee.org>
-        <apigee.env>test</apigee.env>
-        <apigee.username>cicd-test-service-account@your-org-name.iam.gserviceaccount.com</apigee.username>
-        <apigee.serviceaccount.file>/Users/yourusername/work/APIGEEX/SAs/your-org-name-cicd-test-service-account.json</apigee.serviceaccount.file>
-        <api.northbound.domain>xapi-test.your.domain</api.northbound.domain>
-        <!-- Hack to pass in multiple args, ' char is part of the expression -->
-        <!-- without the 's the args get split into individual quoted values -->
+        <!-- Options can be overridden on command line or replaced with your values -->
+        <apigee.org>YOUR_ORG_NAME</apigee.org>
+        <apigee.env>dev</apigee.env>
+        <apigee.bearer>${bearer}</apigee.bearer> <!-- overrides SA file -Dbearer=$(gcloud auth print-access-token) -->
+        <apigee.username>cicd-dev-service-account@YOUR_ORG_NAME.iam.gserviceaccount.com</apigee.username>
+        <apigee.serviceaccount.file>$HOME/SAs/YOUR_ORG_NAME-cicd-dev-service-account.json</apigee.serviceaccount.file>
+        <api.northbound.domain>YOUR_ENVGROUP_HOSTNAME</api.northbound.domain>
         <api.testtag>' or @cors or @health or @errorHandling or @WIP or '</api.testtag>
         <!-- Smartdocs Drupal -->
-        <portal.url>https://developerx.your.domain</portal.url>
-        <portal.username>${PortalUsername}</portal.username>
-        <portal.password>${PortalPassword}</portal.password>
+        <portal.url>https://YOUR_DRUPAL_PORTAL_DOMAIN</portal.url>
+        <portal.username>${PortalUsername}</portal.username> <!-- defined in $HOME/.m2/settings.xml or via -DPortalUsername=maintenance -->
+        <portal.password>${PortalPassword}</portal.password> <!-- defined in $HOME/.m2/settings.xml -->
         <portal.format>yaml</portal.format>
         <portal.api.doc.format>basic_html</portal.api.doc.format>
         <portal.directory>./target/resources/specs</portal.directory>
-        <apigee.smartdocs.config.file>./target/resources/apicatalog-config.json</apigee.smartdocs.config.file>
+        <apigee.smartdocs.config.file>./target/resources/edge/org/apicatalog-config.json</apigee.smartdocs.config.file>
         <apigee.smartdocs.config.options>create</apigee.smartdocs.config.options>
+        <!-- Integrated Portal -->
+        <apigee.portal.siteId>YOUR_ORG_NAME-INTEGRATED_PORTAL_SITE_ID</apigee.portal.siteId> <!-- Apigee Portal Site ID -->
     </properties>
 </profile>
 ```
 ##### Initial build and deploy to pingstatus-v1
 ```
-mvn -P test install
+mvn -P dev install
 ```
 ## Git Setup
 
 **NOTE:** This API proxy repository does not support a "feature" branch with replacement of proxy name and basepath.
 
-### Intitially Create Branches based on SDLC (dev --> test --> prod)
+Go to Git and create a git repository (examples below use "demo").
+
+### Create Branches based on SDLC (dev --> test --> prod)
 Git suggests:
 ```
-echo "# demo2" >> README.md
+echo "# demo" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
