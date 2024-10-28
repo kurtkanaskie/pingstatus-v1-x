@@ -3,8 +3,6 @@ steps:
   args:
   - kms
   - decrypt
-  - "--account=cicd-dev-service-account@apigeex-mint-kurt.iam.gserviceaccount.com"
-  - "--project=apigeex-mint-kurt"
   - "--ciphertext-file=cicd-test.encrypted"
   - "--plaintext-file=cicd-test.decrypted"
   - "--location=global"
