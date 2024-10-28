@@ -68,7 +68,7 @@ The key components enabling continuous integration are:
 Basically, everything the build engine does (Maven and other tools) can be done locally, either directly with the tool (e.g. jslint, cucumberjs) or via Maven commands. 
 
 ## Git structure
-There are three branches, dev, test and prod which align to SDLC phases.
+There are three branches, dev, test and prod which align to SDLC phases and the Apigee environments with the same name.
 
 ### dev branch
 The "dev" branch is the main branch and is used for deployment using Maven to the "dev" Programmable Proxy environment in Apigee.
