@@ -10,7 +10,7 @@ steps:
   - "--key=cicd-dev"
 - name: 'gcr.io/cloud-builders/mvn'
   entrypoint: 'bash'
-  args: ['-c', 'mvn -P test install -Dapigee.username=$$USERNAME -Dapigee.serviceaccount.file=$_SAFILE -Dportal.username=$$PORTAL_USERNAME -Dportal.password=$$PORTAL_PASSWORD -Dcommit="${COMMIT_SHA} via GCP" -Dbranch=${BRANCH_NAME}']
+  args: ['-c', 'mvn -P dev install -Dapigee.username=$$USERNAME -Dapigee.serviceaccount.file=$_SAFILE -Dportal.username=$$PORTAL_USERNAME -Dportal.password=$$PORTAL_PASSWORD -Dcommit="${COMMIT_SHA} via GCP" -Dbranch=${BRANCH_NAME}']
   dir: '.'
   secretEnv: ['USERNAME', 'PORTAL_USERNAME', 'PORTAL_PASSWORD']
 
