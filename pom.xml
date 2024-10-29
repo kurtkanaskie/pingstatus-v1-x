@@ -65,7 +65,7 @@
 				<portal.api.doc.format>basic_html</portal.api.doc.format>
 				<portal.directory>./target/resources/specs</portal.directory>
 				<apigee.smartdocs.config.file>./target/resources/edge/org/apicatalog-config.json</apigee.smartdocs.config.file>
-				<apigee.smartdocs.config.options>create</apigee.smartdocs.config.options>
+				<apigee.smartdocs.config.options>update</apigee.smartdocs.config.options>
 				<!-- Integrated Portal -->
 				<apigee.portal.siteId>apigeex-mint-kurt-exco</apigee.portal.siteId> <!-- Apigee Portal Site ID -->
 			</properties>
@@ -100,7 +100,7 @@
 				<portal.api.doc.format>basic_html</portal.api.doc.format>
 				<portal.directory>./target/resources/specs</portal.directory>
 				<apigee.smartdocs.config.file>./target/resources/edge/org/apicatalog-config.json</apigee.smartdocs.config.file>
-				<apigee.smartdocs.config.options>create</apigee.smartdocs.config.options>
+				<apigee.smartdocs.config.options>update</apigee.smartdocs.config.options>
 				<!-- Integrated Portal -->
 				<apigee.portal.siteId>apigeex-mint-kurt-exco</apigee.portal.siteId> <!-- Apigee Portal Site ID -->
 			</properties>
@@ -246,6 +246,7 @@
 						<include>resources/edge/env/*/targetServers.json</include>
 						<include>resources/edge/env/*/resourcefiles.json</include>
 						<include>resources/edge/env/*/resourceFiles/properties/pingstatus-v1.properties</include>
+						<include>resources/edge/org/apicatalog-config.json</include>
 						<include>resources/edge/org/apiDocs.json</include>
 						<include>resources/edge/org/apiProducts.json</include>
 						<include>resources/edge/org/developerApps.json</include>
