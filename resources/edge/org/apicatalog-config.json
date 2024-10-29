@@ -7,7 +7,9 @@
          "vocabulary":"api_category",
          "field":"field_categories",
          "data":[
-            "CI-CD"
+            "CI-CD",
+            "CI-CD dev",
+            "Monetization"
          ]
       }
    ]

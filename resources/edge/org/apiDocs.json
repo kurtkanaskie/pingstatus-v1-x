@@ -1,0 +1,22 @@
+[
+    {
+        "title": "pingstatus-v1-product-APIGEE_ENVIRONMENT",
+        "description": "Product to test pingstatus-v1 API in APIGEE_ENVIRONMENT env legacy API Product via CI/CD",
+        "anonAllowed": true,
+        "imageUrl": "",
+        "requireCallbackUrl": false,
+        "published": true,
+        "apiProductName": "pingstatus-v1-product-APIGEE_ENVIRONMENT",
+        "categories": [
+            "CI-CD"
+            "CI-CD APIGEE_ENVIRONMENT"
+        ],
+        "imageUrl": "/files/pingstatus-v1.png",
+        "oasDocumentation": {
+         "spec": {
+            "displayName": "pingstatus-v1-product-APIGEE_ENVIRONMENT",
+            "file": "./target/resources/specs/pingstatus-v1.yaml"
+          }
+       }
+    }
+]
