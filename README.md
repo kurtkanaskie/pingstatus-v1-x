@@ -56,19 +56,26 @@ mvn -P dev install -Dbearer=$(gcloud auth print-access-token)
 This proxy is managed as a single source code repository that is self contained for the Apigee X platform. It includes the proxy configuration and its associated resources files (e.g. properties, target servers) necessary for the API proxy design.
 It also includes an Open API Specification (OAS) and tests (static, unit, and integration).
 
+![CI/CD Tools](CI-CD-lifecycle-tools.png)
+
 The key components enabling continuous integration are:
-* GCP Cloud Build or Jenkins - build engine
-* Maven - builder
-* apigeelint - for static proxy linting
+* [GCP Cloud Build](https://cloud.google.com/build?e=0&hl=en) or [Jenkins](https://www.jenkins.io/) - build engine
+* [Apache Maven](https://maven.apache.org/) - lifecycle development modules for Apigee
+  * [deploy](https://github.com/apigee/apigee-deploy-maven-plugin) - bundle and deploy API Proxy
+  * [config](https://github.com/apigee/apigee-config-maven-plugin) - configuration management for Apigee resources (target servers, Open API Specs)
+  * [Smartdocs](https://github.com/apigee/apigee-smartdocs-maven-plugin) - Drupal plugin for Open API Specs
+* [apigeelint](https://github.com/apigee/apigeelint) - static proxy linting
 * npm, node - to run unit and integration tests
-* Apickli - cucumber extension for RESTful API testing
-* Cucumber - Behavior Driven Development
-* JMeter - Performance testing (commented out)
+* [Apickli](https://github.com/apickli/apickli) - cucumber extension for RESTful API testing
+* [Cucumber](https://cucumber.io/) - Behavior Driven Development
+* [Apache JMeter](https://jmeter.apache.org/) - Performance testing
 
 Basically, everything the build engine does (Maven and other tools) can be done locally, either directly with the tool (e.g. jslint, cucumberjs) or via Maven commands. 
 
 ## Git structure
 There are three branches, dev, test and prod which align to SDLC phases and the Apigee environments with the same name.
+
+![SCM Branching Strategy](SCM-branching-strategy.png)
 
 ### dev branch
 The "dev" branch is the main branch and is used for deployment using Maven to the "dev" Programmable Proxy environment in Apigee.
