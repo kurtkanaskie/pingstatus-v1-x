@@ -27,6 +27,7 @@
         "quota": "10000",
         "quotaInterval": "1",
         "quotaTimeUnit": "month",
-        "scopes": []
+        "scopes": [],
+        "space":"templates"
     }  
 ]

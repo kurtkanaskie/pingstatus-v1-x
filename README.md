@@ -52,6 +52,7 @@ mvn -P dev install \
 
 # or if defaults are set per profile, and Portal credentials in $HOME/.m2/settings.xml
 mvn -P dev install -Dbearer=$(gcloud auth print-access-token)
+mvn -P dev install -Dbearer=$(gcloud auth application-default print-access-token --scopes=https://www.googleapis.com/auth/cloud-platform)
 ```
 
 ## Overview
@@ -125,7 +126,6 @@ Update the pom.xml profile with your values for: YOUR_ORG_NAME, YOUR_ENVGROUP_HO
         <apigee.org>YOUR_ORG_NAME</apigee.org>
         <apigee.env>dev</apigee.env>
         <apigee.bearer>${bearer}</apigee.bearer> <!-- overrides SA file -Dbearer=$(gcloud auth print-access-token) -->
-        <apigee.username>cicd-dev-service-account@YOUR_ORG_NAME.iam.gserviceaccount.com</apigee.username>
         <apigee.serviceaccount.file>$HOME/SAs/YOUR_ORG_NAME-cicd-dev-service-account.json</apigee.serviceaccount.file>
         <api.northbound.domain>YOUR_ENVGROUP_HOSTNAME</api.northbound.domain>
         <api.testtag>' or @cors or @health or @errorHandling or @WIP or '</api.testtag>
@@ -313,6 +313,9 @@ cloud-build-local --dryrun=false --config=cloudbuild-dev.yaml --substitutions=BR
 * mvn -P test install -Dskip.clean=true -Dskip.export=true
 
 ### Just update Developers, Products and Apps
+* mvn -P test resources:copy-resources replacer:replace apigee-config:apiproducts -Dskip.clean=true
+
+### Just update Developers, Products and Apps
 * mvn -P test resources:copy-resources replacer:replace apigee-config:developers apigee-config:apiproducts apigee-config:apps apigee-config:exportAppKeys -Dskip.clean=true
 
 ### Just update resource files
@@ -365,6 +368,29 @@ Via process-resources after replacements or when in target
 ```
 mvn -P dev -Dbearer=$(gcloud auth print-access-token) resources:copy-resources replacer:replace apigee-config:apicategories 
 mvn -P dev -Dbearer=$(gcloud auth print-access-token) resources:copy-resources replacer:replace apigee-config:apidocs 
+```
+
+## Discrete Pipeline
+```
+export ENV=test
+export ENV=dev
+mvn -P ${ENV} clean
+mvn -P ${ENV} jshint:lint
+mvn -P ${ENV} frontend:install-node-and-npm
+mvn -P ${ENV} frontend:npm@npm-install
+mvn -P ${ENV} frontend:npm@apigeelint
+mvn -P ${ENV} frontend:npm@unit
+mvn -P ${ENV} resources:copy-resources@copy-resources
+mvn -P ${ENV} replacer:replace@replace
+mvn -P ${ENV} apigee-config:targetservers
+mvn -P ${ENV} apigee-config:resourcefiles
+mvn -P ${ENV} apigee-enterprise:configure
+mvn -P ${ENV} apigee-enterprise:deploy
+mvn -P ${ENV} apigee-config:apiproducts
+mvn -P ${ENV} apigee-config:developers
+mvn -P ${ENV} apigee-config:apps
+mvn -P ${ENV} apigee-config:exportAppKeys
+mvn -P ${ENV} frontend:npm@integration
 ```
 
 

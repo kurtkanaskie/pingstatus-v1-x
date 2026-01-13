@@ -6,8 +6,8 @@
         "port": 443,
         "sSLInfo": {
             "ciphers": [],
-            "clientAuthEnabled": "false",
-            "enabled": "true",
+            "clientAuthEnabled": false,
+            "enabled": true,
             "ignoreValidationErrors": false,
             "protocols": []
         }

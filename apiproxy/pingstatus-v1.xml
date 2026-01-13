@@ -1,6 +1,6 @@
 <APIProxy revision="103" name="pingstatus-v1">
     <DisplayName>pingstatus-v1</DisplayName>
-    <Description>Refactoring for develop, test, prod envs - DESCRIPTION</Description>
+    <Description>Added developeri and x-org-env header to error response; Refactoring for dev, test, prod envs; Added Spaces - DESCRIPTION</Description>
     <CreatedAt>1623940165190</CreatedAt>
     <LastModifiedAt>1623940165190</LastModifiedAt>
     <BasePaths>/pingstatus/v1</BasePaths>
